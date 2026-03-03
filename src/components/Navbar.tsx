@@ -18,8 +18,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="font-display text-xl font-bold tracking-tight">
-          Hit<span className="text-gradient">Diff</span> Digital
+        <Link to="/" className="font-display text-xl font-bold tracking-tight flex items-center gap-1.5">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground text-sm font-bold">HD</span>
+          <span className="hidden sm:inline">HitDiff <span className="text-gradient">Digital</span></span>
         </Link>
 
         {/* Desktop */}

@@ -5,9 +5,10 @@ const Footer = () => (
     <div className="container mx-auto px-4">
       <div className="grid md:grid-cols-3 gap-8">
         <div>
-          <span className="font-display text-lg font-bold">
-            Hit<span className="text-gradient">Diff</span> Digital
-          </span>
+          <div className="flex items-center gap-1.5 font-display text-lg font-bold">
+            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-primary-foreground text-xs font-bold">HD</span>
+            HitDiff <span className="text-gradient">Digital</span>
+          </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">
             Digital innovation that hits different. Streamline, automate, and scale your business.
           </p>

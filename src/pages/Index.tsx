@@ -36,16 +36,12 @@ const Index = () => (
 
       <div className="container relative z-10 px-4 py-32 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <span className="inline-block text-xs font-medium tracking-widest uppercase text-primary mb-6 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
-            Solo Agency · Full-Stack Impact
-          </span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold leading-tight max-w-4xl mx-auto">
             Digital innovation that{" "}
             <span className="text-gradient">hits different</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Streamline your pipelines, automate follow-ups, and scale with confidence. 
-            One agency. Zero bloat. Maximum execution.
+            AI-powered CRM, workflow automation, and digital growth—on autopilot.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="glow" size="lg" asChild>
