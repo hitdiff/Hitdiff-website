@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Send, Mail, Calendar } from "lucide-react";
+import { Send, Mail, Calendar, Phone, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { toast } from "sonner";
@@ -34,7 +34,6 @@ const Contact = () => {
     }
     setErrors({});
     setLoading(true);
-    // Simulate submission (ready for Zapier webhook)
     setTimeout(() => {
       toast.success("Message sent! I'll get back to you within 24 hours.");
       setForm({ name: "", email: "", company: "", message: "" });
@@ -103,6 +102,22 @@ const Contact = () => {
                   <h3 className="font-display font-semibold">Email</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
+              </div>
+              <div className="glass rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Phone size={18} className="text-primary" />
+                  <h3 className="font-display font-semibold">Phone</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p>
+              </div>
+              <div className="glass rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Linkedin size={18} className="text-primary" />
+                  <h3 className="font-display font-semibold">LinkedIn</h3>
+                </div>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                  Connect on LinkedIn →
+                </a>
               </div>
               <div className="glass rounded-xl p-6">
                 <div className="flex items-center gap-3 mb-3">
