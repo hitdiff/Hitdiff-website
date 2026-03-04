@@ -50,14 +50,13 @@ const ServicesSection = () => (
           <motion.div
             key={s.title}
             variants={item}
-            whileHover={{ y: -8, transition: { duration: 0.25 } }}
-            className="group glass rounded-2xl p-8 gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.3)] transition-all duration-500"
+            className="glass rounded-2xl p-8 gradient-card-border transition-all duration-300 flex flex-col h-[280px]"
           >
-            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
-              <s.icon size={24} className="text-primary group-hover:text-accent transition-colors duration-300" />
+            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+              <s.icon size={24} className="text-primary" />
             </div>
             <h3 className="font-display text-lg font-semibold mb-3">{s.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
           </motion.div>
         ))}
       </motion.div>
