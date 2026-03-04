@@ -56,6 +56,8 @@ const services = [
   },
 ];
 
+const CARD_MIN_H = "min-h-[320px]";
+
 const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
   const [open, setOpen] = useState(false);
 
@@ -66,19 +68,19 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.5 }}
       whileHover={{ y: -6, transition: { duration: 0.12 } }}
-      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-200 overflow-hidden flex flex-col"
+      className={`glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-200 overflow-hidden flex flex-col ${CARD_MIN_H}`}
     >
       <div className="p-8 flex flex-col flex-1">
         <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
           <service.icon size={24} className="text-accent" />
         </div>
         <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{service.desc}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed flex-1">{service.desc}</p>
         <button
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200 mt-auto"
+          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200 mt-6"
         >
-          Key features
+          {open ? "Hide features" : "Key features"}
           <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>
             <ChevronDown size={16} />
           </motion.div>
@@ -91,7 +93,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
             <div className="px-8 pb-8 pt-2 border-t border-border/30">
@@ -101,7 +103,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
                     key={f}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06, duration: 0.3 }}
+                    transition={{ delay: i * 0.05, duration: 0.25 }}
                     className="flex items-start gap-3 text-sm text-muted-foreground"
                   >
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
@@ -119,14 +121,12 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 
 const Services = () => (
   <div className="pt-24 relative">
-    {/* Background */}
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 gradient-mesh opacity-40" />
       <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
     </div>
 
-    {/* Hero */}
     <section className="py-20">
       <div className="container px-4 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
@@ -143,7 +143,6 @@ const Services = () => (
       </div>
     </section>
 
-    {/* Cards */}
     <section className="py-16">
       <div className="container px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-start">
@@ -154,9 +153,6 @@ const Services = () => (
       </div>
     </section>
 
-
-
-    {/* CTA */}
     <section className="py-20">
       <div className="container px-4 text-center">
         <motion.div
