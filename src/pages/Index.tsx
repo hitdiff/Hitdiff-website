@@ -9,13 +9,13 @@ const Index = () => (
   <div>
     <HeroSection />
     <div className="gradient-divider" />
+    <AIStatSection />
+    <div className="gradient-divider" />
     <ServicesSection />
     <div className="gradient-divider" />
     <HowItWorks />
     <div className="gradient-divider" />
     <FeaturedWork />
-    <div className="gradient-divider" />
-    <AIStatSection />
     <div className="gradient-divider" />
     <ContactSection />
   </div>
