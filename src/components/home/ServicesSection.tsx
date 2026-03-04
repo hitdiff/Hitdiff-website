@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Code2, Zap, BarChart3, Paintbrush } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Code2, Zap, BarChart3, Paintbrush, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 
 const services = [
@@ -58,6 +60,20 @@ const ServicesSection = () => (
             <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
           </motion.div>
         ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className="text-center mt-14"
+      >
+        <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
+          <Link to="/services">
+            View All Services <ArrowRight className="ml-2" size={16} />
+          </Link>
+        </Button>
       </motion.div>
     </div>
   </section>
