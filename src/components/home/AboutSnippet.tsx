@@ -1,0 +1,78 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
+const AboutSnippet = () => (
+  <section className="py-28">
+    <div className="container px-4">
+      <div className="flex flex-col md:flex-row gap-12 lg:gap-20 max-w-6xl mx-auto items-center">
+        {/* Photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="md:w-5/12 flex-shrink-0"
+        >
+          <div className="relative">
+            {/* Glow */}
+            <div
+              className="absolute -inset-4 rounded-3xl opacity-50 blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(ellipse, hsl(var(--primary) / 0.25), hsl(var(--secondary) / 0.12), transparent 70%)",
+              }}
+            />
+            {/* Card */}
+            <div className="relative glass rounded-3xl p-3 shadow-2xl">
+              <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 flex items-center justify-center overflow-hidden relative">
+                <div className="absolute inset-0 grid-pattern opacity-10" />
+                <div className="text-center space-y-4 relative z-10">
+                  <div className="w-28 h-28 rounded-full bg-primary/15 mx-auto flex items-center justify-center border border-primary/20">
+                    <span className="font-display text-4xl font-bold text-primary">E</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Your photo here</p>
+                </div>
+              </div>
+            </div>
+            {/* Accent glow */}
+            <div
+              className="absolute -bottom-3 -right-3 w-32 h-32 rounded-full blur-3xl opacity-30"
+              style={{ background: "hsl(var(--accent))" }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="md:w-7/12"
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-accent mb-6 px-4 py-2 rounded-full border border-accent/20 bg-accent/5">
+            About
+          </div>
+
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            Meet <span className="text-gradient">Elijah</span>
+          </h2>
+
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            I hold a degree in Computer Science, combining technical knowledge with creative problem-solving. I've always been passionate about sports — golf, soccer, and basketball — which teach me strategy, teamwork, and focus. Traveling and exploring new cultures inspires my work, giving me fresh perspectives and creative ideas. I also enjoy connecting with people across languages and backgrounds, which helps me communicate complex ideas clearly and build meaningful solutions.
+          </p>
+
+          <Button variant="glow" size="lg" asChild>
+            <Link to="/about">
+              Learn More <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);
+
+export default AboutSnippet;
