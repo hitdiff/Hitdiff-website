@@ -29,14 +29,30 @@ const Index = () => (
   <div>
     {/* Hero */}
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          poster=""
+        >
+          <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-in-an-office-4875/1080p.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-background/85" />
+      </div>
+
       {/* Grid bg */}
-      <div className="absolute inset-0 grid-pattern opacity-40" />
+      <div className="absolute inset-0 grid-pattern opacity-30" />
       {/* Glow orb */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-float" />
 
       <div className="container relative z-10 px-4 py-32 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold leading-tight max-w-4xl mx-auto">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-8xl font-bold leading-tight max-w-5xl mx-auto">
             Digital innovation that{" "}
             <span className="text-gradient">hits different</span>
           </h1>
@@ -77,6 +93,7 @@ const Index = () => (
             <motion.div
               key={f.title}
               variants={item}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
               className="group glass rounded-xl p-8 hover:glow-border transition-shadow duration-500"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
@@ -94,7 +111,7 @@ const Index = () => (
     <section className="py-24">
       <div className="container px-4">
         <div className="glass rounded-2xl p-12 md:p-16 text-center glow-border">
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
             Ready to hit <span className="text-gradient">different</span>?
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">

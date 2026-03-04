@@ -19,8 +19,8 @@ const SectionHeading = ({ badge, title, description }: Props) => (
         {badge}
       </span>
     )}
-    <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">{title}</h2>
-    {description && <p className="text-muted-foreground leading-relaxed">{description}</p>}
+    <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{title}</h2>
+    {description && <p className="text-muted-foreground leading-relaxed text-lg">{description}</p>}
   </motion.div>
 );
 
