@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Search, Lightbulb, Hammer, Rocket } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
 
 const steps = [
   { icon: Search, label: "Discovery", desc: "Deep dive into your goals, audience, and competitive landscape." },
@@ -11,6 +12,8 @@ const steps = [
 const HowItWorks = () => (
   <section className="py-28">
     <div className="container px-4">
+      <SectionHeading badge="Process" title="How it works" description="A structured approach that turns ideas into high-performing digital products." />
+
       <div className="relative max-w-5xl mx-auto">
         <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-[2px]"
           style={{ background: "linear-gradient(90deg, hsl(217 91% 60% / 0.4), hsl(263 70% 58% / 0.4), hsl(168 94% 51% / 0.3), hsl(217 91% 60% / 0.2))" }}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
 
 const projects = [
   { title: "GrowthLab Agency", category: "Web Design & CRM", color: "from-primary/20 to-secondary/20" },
@@ -11,6 +12,8 @@ const FeaturedWork = () => (
   <section className="py-28 relative overflow-hidden">
     <div className="absolute inset-0 bg-surface/30" />
     <div className="container relative px-4">
+      <SectionHeading badge="Portfolio" title="Featured work" description="A selection of projects where strategy meets execution." />
+
       <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {projects.map((p, i) => (
           <motion.div
