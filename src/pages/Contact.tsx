@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Send, Mail, Calendar, Phone, Linkedin } from "lucide-react";
+import { Send, Mail, Calendar, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { toast } from "sonner";
@@ -100,13 +100,18 @@ const Contact = () => {
               className="md:col-span-2 space-y-6"
             >
               {[
-                { icon: Mail, title: "Email", content: <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p> },
-                { icon: Phone, title: "Phone", content: <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p> },
                 {
-                  icon: Linkedin, title: "LinkedIn", content: (
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:text-accent/80 transition-colors">
-                      Connect on LinkedIn →
-                    </a>
+                  icon: Mail, title: "Get in Touch", content: (
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-xs text-muted-foreground/70 mb-0.5">Email</p>
+                        <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground/70 mb-0.5">Phone</p>
+                        <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p>
+                      </div>
+                    </div>
                   )
                 },
                 {
