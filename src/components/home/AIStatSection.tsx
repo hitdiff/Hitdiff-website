@@ -18,7 +18,7 @@ const AIStatSection = () => (
     />
     <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
 
-    <div className="container relative z-10 px-4 text-center max-w-3xl mx-auto">
+    <div className="container relative z-10 px-4 text-center max-w-2xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ const AIStatSection = () => (
         transition={{ duration: 0.7 }}
       >
         <motion.p
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+          className="font-display text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-5"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,7 +37,7 @@ const AIStatSection = () => (
         </motion.p>
 
         <motion.p
-          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10"
+          className="text-base text-muted-foreground leading-relaxed max-w-xl mx-auto mb-8"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
