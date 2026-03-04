@@ -126,6 +126,36 @@ const About = () => (
         </div>
       </div>
     </section>
+
+    {/* CTA */}
+    <div className="gradient-divider" />
+    <section className="py-28">
+      <div className="container px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Let's work together
+          </h2>
+          <p className="text-muted-foreground text-lg mb-10">
+            Have a project in mind? Let's talk.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button variant="glow" size="lg" asChild>
+              <Link to="/contact">
+                Get in Touch <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
+              <Link to="/services">View Services</Link>
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   </div>
 );
 
