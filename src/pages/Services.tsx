@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap } from "lucide-react";
+import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, BarChart3 } from "lucide-react";
 
 const services = [
   {
@@ -39,6 +39,19 @@ const services = [
       "Pipeline automation & task routing",
       "Email & SMS drip campaigns",
       "Analytics dashboards & reporting",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Growth Marketing",
+    desc: "Data-driven campaigns structured around your business goals with clear KPIs and measurable ROI.",
+    features: [
+      "Google & Meta paid ads management",
+      "SEO strategy & content optimization",
+      "Funnel design & conversion rate optimization",
+      "Email & SMS marketing automation",
+      "Analytics dashboards with real-time KPIs",
+      "A/B testing & performance iteration",
     ],
   },
 ];
@@ -133,7 +146,7 @@ const Services = () => (
     {/* Cards */}
     <section className="py-16">
       <div className="container px-4">
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} index={i} />
           ))}
