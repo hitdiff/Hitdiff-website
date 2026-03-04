@@ -2,7 +2,6 @@ import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import FeaturedWork from "@/components/home/FeaturedWork";
-import AIPoweredSection from "@/components/home/AIPoweredSection";
 import ContactSection from "@/components/home/ContactSection";
 
 const Index = () => (
@@ -14,8 +13,6 @@ const Index = () => (
     <HowItWorks />
     <div className="gradient-divider" />
     <FeaturedWork />
-    <div className="gradient-divider" />
-    <AIPoweredSection />
     <div className="gradient-divider" />
     <ContactSection />
   </div>

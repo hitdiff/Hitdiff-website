@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, Bot } from "lucide-react";
+import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap } from "lucide-react";
 
 const services = [
   {
@@ -141,26 +141,7 @@ const Services = () => (
       </div>
     </section>
 
-    {/* AI strip */}
-    <section className="py-20">
-      <div className="container px-4 text-center max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="glass rounded-2xl p-10 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 opacity-30" style={{
-            background: "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.05), transparent)"
-          }} />
-          <Bot size={28} className="text-accent mx-auto mb-4 relative z-10" />
-          <p className="relative z-10 text-lg text-muted-foreground leading-relaxed">
-            Every project is <span className="text-foreground font-semibold">powered by AI</span> — automating repetitive tasks, streamlining workflows, and delivering faster results with fewer errors.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+
 
     {/* CTA */}
     <section className="py-20">

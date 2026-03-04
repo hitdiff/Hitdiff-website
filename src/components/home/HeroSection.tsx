@@ -121,15 +121,7 @@ const HeroSection = () => (
     {/* Content */}
     <div className="container relative z-10 px-4 py-32 text-center">
       <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-accent mb-8 px-4 py-2 rounded-full border border-accent/20 bg-accent/5"
-        >
-          <Sparkles size={14} />
-          Digital Agency & Tech Studio
-        </motion.div>
+        <div className="mb-8" />
 
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] max-w-5xl mx-auto">
           We Build Digital{" "}
