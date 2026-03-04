@@ -4,50 +4,121 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const HeroSection = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-    {/* Animated gradient mesh */}
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    {/* Base gradient mesh */}
     <div className="absolute inset-0 gradient-mesh" />
-    <div className="absolute inset-0 grid-pattern opacity-20" />
 
-    {/* Floating orbs */}
-    <div
-      className="absolute top-1/4 left-1/3 w-[500px] h-[500px] rounded-full blur-[150px] opacity-30"
+    {/* Animated fluid orbs */}
+    <motion.div
+      className="absolute w-[700px] h-[700px] rounded-full pointer-events-none"
       style={{
-        background: "radial-gradient(circle, hsl(217 91% 60% / 0.4), transparent)",
-        animation: "mesh-move 20s ease-in-out infinite",
+        top: "5%",
+        left: "-5%",
+        background: "radial-gradient(circle, hsl(var(--primary) / 0.2), transparent 65%)",
+        filter: "blur(100px)",
       }}
+      animate={{ x: [0, 60, -30, 40, 0], y: [0, -40, 30, -20, 0], scale: [1, 1.12, 0.92, 1.06, 1] }}
+      transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
     />
-    <div
-      className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[130px] opacity-25"
+    <motion.div
+      className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
       style={{
-        background: "radial-gradient(circle, hsl(263 70% 58% / 0.35), transparent)",
-        animation: "mesh-move 25s ease-in-out infinite reverse",
+        bottom: "0%",
+        right: "-8%",
+        background: "radial-gradient(circle, hsl(var(--secondary) / 0.18), transparent 65%)",
+        filter: "blur(90px)",
       }}
+      animate={{ x: [0, -50, 35, -25, 0], y: [0, 35, -25, 15, 0], scale: [1, 0.94, 1.1, 0.97, 1] }}
+      transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 2 }}
     />
-    <div
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] opacity-20"
+    <motion.div
+      className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
       style={{
-        background: "radial-gradient(circle, hsl(168 94% 51% / 0.25), transparent)",
-        animation: "mesh-move 18s ease-in-out infinite",
+        top: "30%",
+        right: "20%",
+        background: "radial-gradient(circle, hsl(var(--accent) / 0.12), transparent 60%)",
+        filter: "blur(80px)",
       }}
+      animate={{ x: [0, 30, -45, 20, 0], y: [0, -30, 15, -40, 0], scale: [1, 1.08, 0.95, 1.04, 1] }}
+      transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
     />
+    <motion.div
+      className="absolute w-[350px] h-[350px] rounded-full pointer-events-none"
+      style={{
+        top: "60%",
+        left: "25%",
+        background: "radial-gradient(circle, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.06), transparent 60%)",
+        filter: "blur(70px)",
+      }}
+      animate={{ x: [0, -20, 40, -10, 0], y: [0, 25, -20, 30, 0], scale: [1, 1.05, 0.93, 1.02, 1] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 8 }}
+    />
+
+    {/* Subtle grid */}
+    <div className="absolute inset-0 grid-pattern opacity-[0.07]" />
 
     {/* Floating shapes */}
-    <div className="absolute top-[20%] right-[15%] w-20 h-20 border border-primary/20 rounded-2xl rotate-12 animate-float-slow opacity-30" />
-    <div
-      className="absolute bottom-[25%] left-[10%] w-16 h-16 border border-secondary/20 rounded-full animate-float-slow opacity-25"
-      style={{ animationDelay: "2s" }}
+    <motion.div
+      className="absolute w-28 h-28 rounded-3xl border border-primary/10 pointer-events-none"
+      style={{ top: "16%", right: "14%" }}
+      animate={{ y: [0, -20, 0], rotate: [12, 18, 12] }}
+      transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
     />
-    <div
-      className="absolute top-[60%] right-[25%] w-12 h-12 border border-accent/20 rounded-lg rotate-45 animate-float-slow opacity-20"
-      style={{ animationDelay: "4s" }}
+    <motion.div
+      className="absolute w-20 h-20 rounded-full border border-secondary/10 pointer-events-none"
+      style={{ bottom: "22%", left: "10%" }}
+      animate={{ y: [0, -18, 0], rotate: [-5, 2, -5] }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+    />
+    <motion.div
+      className="absolute w-14 h-14 rounded-xl border border-accent/12 pointer-events-none"
+      style={{ top: "55%", right: "26%" }}
+      animate={{ y: [0, -15, 0], rotate: [45, 50, 45] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+    />
+    <motion.div
+      className="absolute w-10 h-10 rounded-lg border border-primary/8 pointer-events-none"
+      style={{ top: "28%", left: "16%" }}
+      animate={{ y: [0, -12, 0], rotate: [20, 26, 20] }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+    />
+    <motion.div
+      className="absolute w-16 h-16 rounded-2xl border border-secondary/8 pointer-events-none"
+      style={{ bottom: "30%", right: "10%" }}
+      animate={{ y: [0, -22, 0], rotate: [-10, -4, -10] }}
+      transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+    />
+
+    {/* Soft glow spots */}
+    <motion.div
+      className="absolute w-3 h-3 rounded-full pointer-events-none"
+      style={{ top: "25%", right: "30%", background: "hsl(var(--accent))", filter: "blur(6px)" }}
+      animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.5, 1] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute w-2 h-2 rounded-full pointer-events-none"
+      style={{ top: "65%", left: "20%", background: "hsl(var(--primary))", filter: "blur(4px)" }}
+      animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.8, 1] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+    />
+    <motion.div
+      className="absolute w-2.5 h-2.5 rounded-full pointer-events-none"
+      style={{ bottom: "35%", right: "18%", background: "hsl(var(--secondary))", filter: "blur(5px)" }}
+      animate={{ opacity: [0.25, 0.65, 0.25], scale: [1, 1.6, 1] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
     />
 
     {/* Radial glow behind headline */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[120px]"
-      style={{ background: "radial-gradient(ellipse, hsl(217 91% 60% / 0.15), transparent 70%)" }}
+    <div
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] rounded-full pointer-events-none"
+      style={{
+        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.05) 45%, transparent 70%)",
+        filter: "blur(40px)",
+      }}
     />
 
+    {/* Content */}
     <div className="container relative z-10 px-4 py-32 text-center">
       <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
         <motion.div
@@ -80,6 +151,9 @@ const HeroSection = () => (
         </div>
       </motion.div>
     </div>
+
+    {/* Bottom fade */}
+    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
   </section>
 );
 
