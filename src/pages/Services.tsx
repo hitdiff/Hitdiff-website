@@ -65,8 +65,8 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.5 }}
-      whileHover={{ y: -6, transition: { duration: 0.25 } }}
-      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-500 overflow-hidden flex flex-col"
+      whileHover={{ y: -6, transition: { duration: 0.12 } }}
+      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-200 overflow-hidden flex flex-col"
     >
       <div className="p-8 flex flex-col flex-1">
         <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
@@ -94,7 +94,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-8 pt-2 border-t border-border/30">
+            <div className="px-8 pb-4 pt-2 border-t border-border/30">
               <ul className="space-y-3">
                 {service.features.map((f, i) => (
                   <motion.li
@@ -109,6 +109,17 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
                   </motion.li>
                 ))}
               </ul>
+            </div>
+            <div className="px-8 pb-8">
+              <button
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
+              >
+                Close
+                <motion.div animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+                  <ChevronDown size={16} />
+                </motion.div>
+              </button>
             </div>
           </motion.div>
         )}
