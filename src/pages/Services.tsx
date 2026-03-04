@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Code2, Zap, BarChart3, ArrowRight, Globe, Workflow, Target } from "lucide-react";
-import { motion } from "framer-motion";
+import { Code2, Zap, BarChart3, ArrowRight, ChevronDown, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 
 const services = [
@@ -9,23 +10,105 @@ const services = [
     icon: Code2,
     title: "Custom Web Design & Development",
     desc: "Responsive, conversion-focused websites and web apps built with cutting-edge technology. Fast, SEO-ready, and designed to make an impression.",
-    features: ["React & Modern Frameworks", "Mobile-First Design", "Performance Optimized", "SEO Foundations"],
+    features: [
+      "Custom React & modern framework builds",
+      "Mobile-first responsive design",
+      "Performance-optimized (Core Web Vitals)",
+      "Built-in SEO foundations & schema markup",
+      "Landing pages & funnel architecture",
+      "E-commerce & membership site builds",
+    ],
+    examples: "Example: A local service business gets a blazing-fast website with integrated booking, lead capture forms that auto-feed into their CRM, and SEO that ranks them on page one.",
   },
   {
     icon: Zap,
     title: "CRM & Workflow Automation",
-    desc: "Eliminate manual busywork. I build automated systems that nurture leads, manage clients, and keep your operations running like clockwork.",
-    features: ["Pipeline Automation", "Follow-Up Sequences", "Client Dashboards", "Zapier & API Integrations"],
+    desc: "Eliminate manual busywork. AI-powered systems that nurture leads, automate follow-ups, manage your pipeline, and keep your operations running like clockwork.",
+    features: [
+      "Automated lead follow-up sequences (email, SMS, voicemail drops)",
+      "AI-driven pipeline management & lead scoring",
+      "Client onboarding automations",
+      "Appointment booking & reminder workflows",
+      "Zapier, Make, & custom API integrations",
+      "Real-time dashboards & performance reporting",
+    ],
+    examples: "Example: A sales team automates their entire follow-up pipeline—new leads get an instant SMS + email, a 3-day drip sequence, and auto-assignment to reps based on lead score. Zero manual work.",
   },
   {
     icon: BarChart3,
     title: "Structured Digital Marketing",
-    desc: "No guesswork. Data-driven campaigns structured around your business goals with clear KPIs and reporting.",
-    features: ["Paid Ads Management", "SEO & Content Strategy", "Funnel Architecture", "Analytics & Reporting"],
+    desc: "No guesswork. Data-driven campaigns structured around your business goals with clear KPIs, transparent reporting, and measurable ROI.",
+    features: [
+      "Google & Meta paid ads management",
+      "SEO strategy & content optimization",
+      "Funnel design & conversion rate optimization",
+      "Email & SMS marketing automation",
+      "Analytics dashboards with real-time KPIs",
+      "A/B testing & performance iteration",
+    ],
+    examples: "Example: An e-commerce brand gets a full-funnel strategy—top-of-funnel Meta ads drive traffic to optimized landing pages, retargeting sequences recover abandoned carts, and weekly reports track every dollar.",
   },
 ];
 
-const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
+const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="glass rounded-2xl overflow-hidden hover:glow-border transition-shadow duration-500"
+    >
+      <div className="p-8">
+        <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+          <service.icon size={26} className="text-primary" />
+        </div>
+        <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
+        <p className="text-muted-foreground leading-relaxed mb-5 text-sm">{service.desc}</p>
+
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+        >
+          {expanded ? "Show less" : "See what's included"}
+          <motion.span animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <ChevronDown size={16} />
+          </motion.span>
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="px-8 pb-8 space-y-4">
+              <div className="border-t border-border/50 pt-5">
+                <ul className="space-y-2.5">
+                  {service.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                      <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-primary/5 rounded-lg p-4 border border-primary/10">
+                <p className="text-sm text-muted-foreground italic">{service.examples}</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 const Services = () => (
   <div className="pt-24">
@@ -34,36 +117,12 @@ const Services = () => (
         <SectionHeading
           badge="Services"
           title="Everything you need to grow"
-          description="Lean, focused solutions built by one person who understands the full stack—from design to deployment to scale."
+          description="Lean, focused solutions built by someone who understands the full stack—from design to deployment to scale."
         />
 
-        <div className="space-y-8">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              variants={item}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="glass rounded-xl p-8 md:p-10 flex flex-col md:flex-row gap-8 hover:glow-border transition-shadow duration-500"
-            >
-              <div className="flex-shrink-0">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <s.icon size={26} className="text-primary" />
-                </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-display text-xl font-semibold mb-3">{s.title}</h3>
-                <p className="text-muted-foreground leading-relaxed mb-5">{s.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {s.features.map((f) => (
-                    <span key={f} className="text-xs font-medium px-3 py-1.5 rounded-full bg-primary/5 border border-primary/15 text-primary">
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            <ServiceCard key={s.title} service={s} index={i} />
           ))}
         </div>
       </div>
@@ -72,7 +131,7 @@ const Services = () => (
     {/* CTA */}
     <section className="py-24">
       <div className="container px-4 text-center">
-        <h2 className="font-display text-3xl font-bold mb-4">Need something custom?</h2>
+        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Need something custom?</h2>
         <p className="text-muted-foreground max-w-lg mx-auto mb-8">Every business is unique. Let's design a solution that fits yours perfectly.</p>
         <Button variant="glow" size="lg" asChild>
           <Link to="/contact">Get a Free Consultation <ArrowRight className="ml-2" size={16} /></Link>
