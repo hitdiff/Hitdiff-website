@@ -18,7 +18,7 @@ const AIStatSection = () => (
     />
     <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
 
-    <div className="container relative z-10 px-4 text-center max-w-2xl mx-auto">
+    <div className="container relative z-10 px-4 text-center max-w-3xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
