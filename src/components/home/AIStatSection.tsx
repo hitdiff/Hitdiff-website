@@ -4,61 +4,43 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const AIStatSection = () => (
-  <section className="py-28 relative overflow-hidden">
-    {/* Background */}
-    <div className="absolute inset-0" style={{
-      background: "linear-gradient(180deg, hsl(var(--background)), hsl(222 50% 5%), hsl(var(--background)))"
-    }} />
-    <div
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full pointer-events-none"
-      style={{
-        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.12), hsl(var(--secondary) / 0.08), transparent 70%)",
-        filter: "blur(80px)",
-      }}
-    />
-    <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
-
-    <div className="container relative z-10 px-4 text-center max-w-3xl mx-auto">
+  <section className="py-12">
+    <div className="container px-4 max-w-4xl mx-auto">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5 }}
+        className="glass rounded-2xl px-8 py-7 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden"
       >
-        <motion.p
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-gradient-teal">77%</span> of companies use or
-          are planning to use AI to improve business outcomes.
-        </motion.p>
+        {/* Subtle background glow */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse at 20% 50%, hsl(var(--accent) / 0.08), transparent 60%), radial-gradient(ellipse at 80% 50%, hsl(var(--primary) / 0.06), transparent 60%)",
+          }}
+        />
 
-        <motion.p
-          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          AI-driven workflows and automation are transforming modern businesses,
-          improving efficiency and productivity.
-        </motion.p>
+        <div className="relative z-10 flex-1 min-w-0">
+          <p className="font-display text-base md:text-lg font-semibold leading-snug mb-2">
+            <span className="text-gradient-teal" style={{ textShadow: "0 0 20px hsl(var(--accent) / 0.3)" }}>
+              77%
+            </span>{" "}
+            of companies use or are planning to use AI to improve business outcomes.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            AI-driven workflows and automation help businesses save time, reduce repetitive tasks, and boost efficiency.
+          </p>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <Button variant="glow" size="lg" asChild>
+        <div className="relative z-10 flex-shrink-0">
+          <Button variant="glow" size="sm" asChild>
             <Link to="/services">
-              Learn How <ArrowRight className="ml-2" size={16} />
+              Learn How <ArrowRight className="ml-1.5" size={13} />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </motion.div>
     </div>
   </section>
