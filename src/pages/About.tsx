@@ -17,7 +17,27 @@ const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } 
 const item = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
 const About = () => (
-  <div className="pt-24">
+  <div className="pt-24 relative">
+    {/* Animated AI pattern background */}
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      {/* Animated orbs */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] animate-float" style={{ animationDelay: "3s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] animate-float" style={{ animationDelay: "6s" }} />
+      {/* Circuit-like lines */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M0 50h40M60 50h40M50 0v40M50 60v40" stroke="hsl(var(--primary))" strokeWidth="0.5" fill="none" />
+            <circle cx="50" cy="50" r="3" fill="hsl(var(--primary))" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit)" />
+      </svg>
+    </div>
+
     <section className="py-24">
       <div className="container px-4">
         <SectionHeading badge="About" title="The agency behind the automation" />
@@ -95,30 +115,6 @@ const About = () => (
               <h3 className="font-display font-semibold mb-2">{v.title}</h3>
               <p className="text-sm text-muted-foreground">{v.desc}</p>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-
-    {/* Stats */}
-    <section className="py-16">
-      <div className="container px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass rounded-2xl p-10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
-        >
-          {[
-            { num: "50+", label: "Projects Delivered" },
-            { num: "10k+", label: "Workflows Automated" },
-            { num: "98%", label: "Client Retention" },
-            { num: "24h", label: "Response Time" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-3xl md:text-4xl font-bold text-gradient">{s.num}</p>
-              <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
-            </div>
           ))}
         </motion.div>
       </div>
