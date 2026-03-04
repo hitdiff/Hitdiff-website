@@ -1,128 +1,159 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  r: number;
+  glow: boolean;
+  color: string;
+}
+
+const NetworkCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const nodesRef = useRef<Node[]>([]);
+  const animRef = useRef<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const w = () => canvas.offsetWidth;
+    const h = () => canvas.offsetHeight;
+    const NODE_COUNT = 60;
+    const CONNECTION_DIST = 180;
+
+    const colors = [
+      "59, 130, 246",   // blue
+      "20, 241, 217",   // teal
+      "139, 92, 246",   // purple
+    ];
+
+    // Init nodes
+    nodesRef.current = Array.from({ length: NODE_COUNT }, () => {
+      const glow = Math.random() < 0.25;
+      return {
+        x: Math.random() * w(),
+        y: Math.random() * h(),
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: glow ? 2.5 + Math.random() * 1.5 : 1.2 + Math.random() * 0.8,
+        glow,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      };
+    });
+
+    const draw = () => {
+      const W = w();
+      const H = h();
+      ctx.clearRect(0, 0, W, H);
+
+      const nodes = nodesRef.current;
+
+      // Update positions
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        n.x = Math.max(0, Math.min(W, n.x));
+        n.y = Math.max(0, Math.min(H, n.y));
+      }
+
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DIST) {
+            const opacity = (1 - dist / CONNECTION_DIST) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (const n of nodes) {
+        if (n.glow) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+          const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
+          grad.addColorStop(0, `rgba(${n.color}, 0.2)`);
+          grad.addColorStop(1, `rgba(${n.color}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = n.glow
+          ? `rgba(${n.color}, 0.7)`
+          : `rgba(${n.color}, 0.25)`;
+        ctx.fill();
+      }
+
+      animRef.current = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
+  );
+};
 
 const HeroSection = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-    {/* Base gradient mesh */}
-    <div className="absolute inset-0 gradient-mesh" />
+    {/* Gradient depth base */}
+    <div className="absolute inset-0" style={{
+      background: "radial-gradient(ellipse at 50% 40%, hsl(222 47% 10%), hsl(222 47% 7%) 50%, hsl(220 20% 3%) 100%)"
+    }} />
 
-    {/* Animated fluid orbs */}
-    <motion.div
-      className="absolute w-[700px] h-[700px] rounded-full pointer-events-none"
-      style={{
-        top: "5%",
-        left: "-5%",
-        background: "radial-gradient(circle, hsl(var(--primary) / 0.2), transparent 65%)",
-        filter: "blur(100px)",
-      }}
-      animate={{ x: [0, 60, -30, 40, 0], y: [0, -40, 30, -20, 0], scale: [1, 1.12, 0.92, 1.06, 1] }}
-      transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <motion.div
-      className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
-      style={{
-        bottom: "0%",
-        right: "-8%",
-        background: "radial-gradient(circle, hsl(var(--secondary) / 0.18), transparent 65%)",
-        filter: "blur(90px)",
-      }}
-      animate={{ x: [0, -50, 35, -25, 0], y: [0, 35, -25, 15, 0], scale: [1, 0.94, 1.1, 0.97, 1] }}
-      transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-    />
-    <motion.div
-      className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
-      style={{
-        top: "30%",
-        right: "20%",
-        background: "radial-gradient(circle, hsl(var(--accent) / 0.12), transparent 60%)",
-        filter: "blur(80px)",
-      }}
-      animate={{ x: [0, 30, -45, 20, 0], y: [0, -30, 15, -40, 0], scale: [1, 1.08, 0.95, 1.04, 1] }}
-      transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-    />
-    <motion.div
-      className="absolute w-[350px] h-[350px] rounded-full pointer-events-none"
-      style={{
-        top: "60%",
-        left: "25%",
-        background: "radial-gradient(circle, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.06), transparent 60%)",
-        filter: "blur(70px)",
-      }}
-      animate={{ x: [0, -20, 40, -10, 0], y: [0, 25, -20, 30, 0], scale: [1, 1.05, 0.93, 1.02, 1] }}
-      transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 8 }}
-    />
+    {/* Neural network canvas */}
+    <NetworkCanvas />
 
-    {/* Subtle grid */}
-    <div className="absolute inset-0 grid-pattern opacity-[0.07]" />
-
-    {/* Floating shapes */}
-    <motion.div
-      className="absolute w-28 h-28 rounded-3xl border border-primary/10 pointer-events-none"
-      style={{ top: "16%", right: "14%" }}
-      animate={{ y: [0, -20, 0], rotate: [12, 18, 12] }}
-      transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <motion.div
-      className="absolute w-20 h-20 rounded-full border border-secondary/10 pointer-events-none"
-      style={{ bottom: "22%", left: "10%" }}
-      animate={{ y: [0, -18, 0], rotate: [-5, 2, -5] }}
-      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-    />
-    <motion.div
-      className="absolute w-14 h-14 rounded-xl border border-accent/12 pointer-events-none"
-      style={{ top: "55%", right: "26%" }}
-      animate={{ y: [0, -15, 0], rotate: [45, 50, 45] }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-    />
-    <motion.div
-      className="absolute w-10 h-10 rounded-lg border border-primary/8 pointer-events-none"
-      style={{ top: "28%", left: "16%" }}
-      animate={{ y: [0, -12, 0], rotate: [20, 26, 20] }}
-      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-    />
-    <motion.div
-      className="absolute w-16 h-16 rounded-2xl border border-secondary/8 pointer-events-none"
-      style={{ bottom: "30%", right: "10%" }}
-      animate={{ y: [0, -22, 0], rotate: [-10, -4, -10] }}
-      transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-    />
-
-    {/* Soft glow spots */}
-    <motion.div
-      className="absolute w-3 h-3 rounded-full pointer-events-none"
-      style={{ top: "25%", right: "30%", background: "hsl(var(--accent))", filter: "blur(6px)" }}
-      animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.5, 1] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-    />
-    <motion.div
-      className="absolute w-2 h-2 rounded-full pointer-events-none"
-      style={{ top: "65%", left: "20%", background: "hsl(var(--primary))", filter: "blur(4px)" }}
-      animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.8, 1] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-    />
-    <motion.div
-      className="absolute w-2.5 h-2.5 rounded-full pointer-events-none"
-      style={{ bottom: "35%", right: "18%", background: "hsl(var(--secondary))", filter: "blur(5px)" }}
-      animate={{ opacity: [0.25, 0.65, 0.25], scale: [1, 1.6, 1] }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-    />
-
-    {/* Radial glow behind headline */}
+    {/* Soft glow behind center */}
     <div
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] rounded-full pointer-events-none"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
       style={{
-        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.05) 45%, transparent 70%)",
-        filter: "blur(40px)",
+        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.08), transparent 65%)",
+        filter: "blur(60px)",
       }}
     />
 
     {/* Content */}
     <div className="container relative z-10 px-4 py-32 text-center">
       <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-        <div className="mb-8" />
-
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] max-w-5xl mx-auto">
           We Build Digital{" "}
           <span className="text-gradient">Experiences</span>{" "}
