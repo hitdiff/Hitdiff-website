@@ -155,7 +155,7 @@ const Services = () => (
     </section>
 
     <div className="gradient-divider" />
-    <AIStatSection />
+    <AIStatSection hideCta />
     <div className="gradient-divider" />
 
     <section className="py-20">

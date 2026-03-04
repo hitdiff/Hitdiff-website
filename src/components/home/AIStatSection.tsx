@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const AIStatSection = () => (
+const AIStatSection = ({ hideCta = false }: { hideCta?: boolean }) => (
   <section className="py-28 relative overflow-hidden">
     {/* Background */}
     <div className="absolute inset-0" style={{
@@ -47,18 +47,20 @@ const AIStatSection = () => (
           improving efficiency and productivity.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <Button variant="glow" size="lg" asChild>
-            <Link to="/services">
-              Learn How <ArrowRight className="ml-2" size={16} />
-            </Link>
-          </Button>
-        </motion.div>
+        {!hideCta && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <Button variant="glow" size="lg" asChild>
+              <Link to="/services">
+                Learn How <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </Button>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   </section>
