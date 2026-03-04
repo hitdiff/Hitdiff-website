@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, BarChart3 } from "lucide-react";
+import AIStatSection from "@/components/home/AIStatSection";
 
 const services = [
   {
@@ -152,6 +153,10 @@ const Services = () => (
         </div>
       </div>
     </section>
+
+    <div className="gradient-divider" />
+    <AIStatSection />
+    <div className="gradient-divider" />
 
     <section className="py-20">
       <div className="container px-4 text-center">
