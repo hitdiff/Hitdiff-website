@@ -138,7 +138,7 @@ const Services = () => (
             What I <span className="text-gradient">Build</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            End-to-end digital solutions.
+            End-to-end digital solutions designed to save time, drive growth, and stand out.
           </p>
         </motion.div>
       </div>
@@ -156,7 +156,30 @@ const Services = () => (
 
     <div className="gradient-divider" />
     <AIStatSection />
-  
+    <div className="gradient-divider" />
+
+    <section className="py-20">
+      <div className="container px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            Ready to get started?
+          </h2>
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+            Let's discuss your project and find the right solution.
+          </p>
+          <Button variant="glow" size="lg" asChild>
+            <Link to="/contact">
+              Start a Project <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
   </div>
 );
 
