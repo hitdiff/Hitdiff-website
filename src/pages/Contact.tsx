@@ -47,8 +47,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-24">
-      <section className="py-24">
+    <div className="pt-24 relative">
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-background" />
+        <div className="absolute inset-0 gradient-mesh opacity-40" />
+      </div>
+
+      <section className="py-28">
         <div className="container px-4">
           <SectionHeading
             badge="Contact"
@@ -57,31 +62,30 @@ const Contact = () => {
           />
 
           <div className="grid md:grid-cols-5 gap-10 max-w-4xl mx-auto">
-            {/* Form */}
             <motion.form
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               onSubmit={handleSubmit}
-              className="md:col-span-3 glass rounded-xl p-8 space-y-5"
+              className="md:col-span-3 glass rounded-xl p-8 space-y-5 gradient-card-border"
             >
               <div>
                 <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
-                <Input id="name" value={form.name} onChange={(e) => update("name", e.target.value)} className="mt-1.5 bg-background/50" placeholder="Your name" />
+                <Input id="name" value={form.name} onChange={(e) => update("name", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="Your name" />
                 {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
               </div>
               <div>
                 <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="mt-1.5 bg-background/50" placeholder="you@company.com" />
+                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="you@company.com" />
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
               </div>
               <div>
                 <Label htmlFor="company" className="text-sm font-medium">Company</Label>
-                <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} className="mt-1.5 bg-background/50" placeholder="Your company (optional)" />
+                <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="Your company (optional)" />
               </div>
               <div>
                 <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
-                <Textarea id="message" value={form.message} onChange={(e) => update("message", e.target.value)} className="mt-1.5 bg-background/50 min-h-[120px]" placeholder="Tell me about your project..." />
+                <Textarea id="message" value={form.message} onChange={(e) => update("message", e.target.value)} className="mt-1.5 bg-background/50 min-h-[120px] focus:border-accent" placeholder="Tell me about your project..." />
                 {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
               </div>
               <Button variant="glow" className="w-full" disabled={loading}>
@@ -89,48 +93,39 @@ const Contact = () => {
               </Button>
             </motion.form>
 
-            {/* Sidebar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="md:col-span-2 space-y-6"
             >
-              <div className="glass rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Mail size={18} className="text-primary" />
-                  <h3 className="font-display font-semibold">Email</h3>
+              {[
+                { icon: Mail, title: "Email", content: <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p> },
+                { icon: Phone, title: "Phone", content: <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p> },
+                {
+                  icon: Linkedin, title: "LinkedIn", content: (
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm text-accent hover:text-accent/80 transition-colors">
+                      Connect on LinkedIn →
+                    </a>
+                  )
+                },
+                {
+                  icon: Calendar, title: "Book a Call", content: (
+                    <>
+                      <p className="text-sm text-muted-foreground mb-3">Schedule a free 30-minute strategy call.</p>
+                      <Button variant="outline" size="sm" className="w-full hover:bg-accent/10 hover:text-accent hover:border-accent/30">Schedule Call</Button>
+                    </>
+                  )
+                },
+              ].map((item) => (
+                <div key={item.title} className="glass rounded-xl p-6 gradient-card-border hover:glow-border transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-3">
+                    <item.icon size={18} className="text-primary" />
+                    <h3 className="font-display font-semibold">{item.title}</h3>
+                  </div>
+                  {item.content}
                 </div>
-                <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
-              </div>
-              <div className="glass rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Phone size={18} className="text-primary" />
-                  <h3 className="font-display font-semibold">Phone</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p>
-              </div>
-              <div className="glass rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Linkedin size={18} className="text-primary" />
-                  <h3 className="font-display font-semibold">LinkedIn</h3>
-                </div>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:text-primary/80 transition-colors">
-                  Connect on LinkedIn →
-                </a>
-              </div>
-              <div className="glass rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Calendar size={18} className="text-primary" />
-                  <h3 className="font-display font-semibold">Book a Call</h3>
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Prefer to talk live? Schedule a free 30-minute strategy call.
-                </p>
-                <Button variant="outline" size="sm" className="w-full">
-                  Schedule Call
-                </Button>
-              </div>
+              ))}
             </motion.div>
           </div>
         </div>

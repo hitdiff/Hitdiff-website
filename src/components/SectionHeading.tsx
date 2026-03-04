@@ -15,7 +15,7 @@ const SectionHeading = ({ badge, title, description }: Props) => (
     className="text-center max-w-2xl mx-auto mb-16"
   >
     {badge && (
-      <span className="inline-block text-xs font-medium tracking-widest uppercase text-primary mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
+      <span className="inline-block text-xs font-medium tracking-widest uppercase text-accent mb-4 px-3 py-1 rounded-full border border-accent/20 bg-accent/5">
         {badge}
       </span>
     )}

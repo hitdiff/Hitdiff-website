@@ -18,33 +18,22 @@ const item = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, trans
 
 const About = () => (
   <div className="pt-24 relative">
-    {/* Animated AI pattern background */}
+    {/* Background */}
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 grid-pattern opacity-20" />
-      {/* Animated orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] animate-float" style={{ animationDelay: "3s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] animate-float" style={{ animationDelay: "6s" }} />
-      {/* Circuit-like lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M0 50h40M60 50h40M50 0v40M50 60v40" stroke="hsl(var(--primary))" strokeWidth="0.5" fill="none" />
-            <circle cx="50" cy="50" r="3" fill="hsl(var(--primary))" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#circuit)" />
-      </svg>
+      <div className="absolute inset-0 gradient-mesh opacity-50" />
+      <div className="absolute inset-0 grid-pattern opacity-15" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[150px] opacity-20"
+        style={{ background: "hsl(217 91% 60% / 0.3)", animation: "mesh-move 20s ease-in-out infinite" }} />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] opacity-15"
+        style={{ background: "hsl(263 70% 58% / 0.25)", animation: "mesh-move 25s ease-in-out infinite reverse" }} />
     </div>
 
-    <section className="py-24">
+    <section className="py-28">
       <div className="container px-4">
         <SectionHeading badge="About" title="The agency behind the automation" />
 
-        {/* Photo + Text split */}
-        <div className="flex flex-col md:flex-row gap-10 max-w-5xl mx-auto mb-24">
-          {/* 1/3 Photo */}
+        <div className="flex flex-col md:flex-row gap-10 max-w-5xl mx-auto mb-28">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -52,19 +41,21 @@ const About = () => (
             transition={{ duration: 0.6 }}
             className="md:w-1/3 flex-shrink-0"
           >
-            <div className="glass rounded-2xl p-2 glow-border">
-              <div className="aspect-[3/4] rounded-xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent flex items-center justify-center overflow-hidden">
-                <div className="text-center space-y-3">
-                  <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto flex items-center justify-center">
-                    <span className="font-display text-2xl font-bold text-primary">HD</span>
+            <div className="relative">
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/20 blur-sm" />
+              <div className="relative glass rounded-2xl p-2">
+                <div className="aspect-[3/4] rounded-xl bg-gradient-to-br from-primary/15 via-secondary/10 to-accent/5 flex items-center justify-center">
+                  <div className="text-center space-y-3">
+                    <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto flex items-center justify-center">
+                      <span className="font-display text-2xl font-bold text-primary">HD</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Your photo here</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">Your photo here</p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* 2/3 Text */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -72,27 +63,21 @@ const About = () => (
             transition={{ duration: 0.6, delay: 0.15 }}
             className="md:w-2/3 glass rounded-2xl p-8 md:p-10"
           >
-            <motion.h3
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="font-display text-2xl font-bold mb-5"
-            >
+            <h3 className="font-display text-2xl font-bold mb-5">
               Digital systems that <span className="text-gradient">work while you sleep</span>
-            </motion.h3>
+            </h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
               HitDiff Digital is built on one principle: <span className="text-foreground font-medium">your business deserves systems that actually work.</span> I combine web development, AI-powered CRM automation, and digital marketing into cohesive strategies—so nothing falls through the cracks.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              No bloated teams. No miscommunication. Just focused, technical execution that moves the needle. From automating your entire follow-up pipeline to building conversion-optimized websites, every solution is engineered for measurable growth.
+              No bloated teams. No miscommunication. Just focused, technical execution that moves the needle.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Whether it's streamlining your sales pipeline, setting up AI-driven lead nurturing, or launching a full-stack marketing campaign—I handle the technical complexity so you can focus on closing deals and scaling your business.
+              Whether it's streamlining your sales pipeline, setting up AI-driven lead nurturing, or launching a full-stack marketing campaign—I handle the technical complexity so you can focus on scaling.
             </p>
           </motion.div>
         </div>
 
-        {/* Values grid */}
         <SectionHeading title="How I operate" />
 
         <motion.div
@@ -107,7 +92,7 @@ const About = () => (
               key={v.title}
               variants={item}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="glass rounded-xl p-6 text-center hover:glow-border transition-shadow duration-500"
+              className="glass rounded-xl p-6 text-center gradient-card-border hover:glow-border transition-all duration-500"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <v.icon size={22} className="text-primary" />
@@ -120,10 +105,12 @@ const About = () => (
       </div>
     </section>
 
-    <section className="py-24">
+    <div className="gradient-divider" />
+
+    <section className="py-28">
       <div className="container px-4 text-center">
-        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Let's build something <span className="text-gradient">great</span></h2>
-        <p className="text-muted-foreground max-w-lg mx-auto mb-8">Ready to streamline your operations and grow with confidence?</p>
+        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Let's build something <span className="text-gradient">great</span></h2>
+        <p className="text-muted-foreground max-w-lg mx-auto mb-8 text-lg">Ready to streamline your operations and grow with confidence?</p>
         <Button variant="glow" size="lg" asChild>
           <Link to="/contact">Get in Touch <ArrowRight className="ml-2" size={16} /></Link>
         </Button>

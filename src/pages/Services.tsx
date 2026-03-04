@@ -9,7 +9,7 @@ const services = [
   {
     icon: Code2,
     title: "Custom Web Design & Development",
-    desc: "Responsive, conversion-focused websites and web apps built with cutting-edge technology. Fast, SEO-ready, and designed to make an impression.",
+    desc: "Responsive, conversion-focused websites and web apps built with cutting-edge technology.",
     features: [
       "Custom React & modern framework builds",
       "Mobile-first responsive design",
@@ -23,7 +23,7 @@ const services = [
   {
     icon: Zap,
     title: "CRM & Workflow Automation",
-    desc: "Eliminate manual busywork. AI-powered systems that nurture leads, automate follow-ups, manage your pipeline, and keep your operations running like clockwork.",
+    desc: "Eliminate manual busywork. AI-powered systems that nurture leads, automate follow-ups, and manage your pipeline.",
     features: [
       "Automated lead follow-up sequences (email, SMS, voicemail drops)",
       "AI-driven pipeline management & lead scoring",
@@ -32,12 +32,12 @@ const services = [
       "Zapier, Make, & custom API integrations",
       "Real-time dashboards & performance reporting",
     ],
-    examples: "Example: A sales team automates their entire follow-up pipeline—new leads get an instant SMS + email, a 3-day drip sequence, and auto-assignment to reps based on lead score. Zero manual work.",
+    examples: "Example: A sales team automates their entire follow-up pipeline—new leads get instant SMS + email, a 3-day drip sequence, and auto-assignment to reps based on lead score.",
   },
   {
     icon: BarChart3,
     title: "Structured Digital Marketing",
-    desc: "No guesswork. Data-driven campaigns structured around your business goals with clear KPIs, transparent reporting, and measurable ROI.",
+    desc: "Data-driven campaigns structured around your business goals with clear KPIs and measurable ROI.",
     features: [
       "Google & Meta paid ads management",
       "SEO strategy & content optimization",
@@ -46,7 +46,7 @@ const services = [
       "Analytics dashboards with real-time KPIs",
       "A/B testing & performance iteration",
     ],
-    examples: "Example: An e-commerce brand gets a full-funnel strategy—top-of-funnel Meta ads drive traffic to optimized landing pages, retargeting sequences recover abandoned carts, and weekly reports track every dollar.",
+    examples: "Example: An e-commerce brand gets a full-funnel strategy—top-of-funnel Meta ads, optimized landing pages, retargeting sequences, and weekly performance reports.",
   },
 ];
 
@@ -59,7 +59,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass rounded-2xl overflow-hidden hover:glow-border transition-shadow duration-500"
+      className="glass rounded-2xl overflow-hidden gradient-card-border hover:glow-border transition-all duration-500"
     >
       <div className="p-8">
         <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
@@ -67,10 +67,9 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
         </div>
         <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
         <p className="text-muted-foreground leading-relaxed mb-5 text-sm">{service.desc}</p>
-
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
         >
           {expanded ? "Show less" : "See what's included"}
           <motion.span animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -78,7 +77,6 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
           </motion.span>
         </button>
       </div>
-
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -93,7 +91,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
                 <ul className="space-y-2.5">
                   {service.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 size={16} className="text-accent mt-0.5 flex-shrink-0" />
                       {f}
                     </li>
                   ))}
@@ -112,14 +110,13 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 
 const Services = () => (
   <div className="pt-24">
-    <section className="py-24">
+    <section className="py-28">
       <div className="container px-4">
         <SectionHeading
           badge="Services"
           title="Everything you need to grow"
           description="Lean, focused solutions built by someone who understands the full stack—from design to deployment to scale."
         />
-
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} index={i} />
@@ -127,12 +124,11 @@ const Services = () => (
         </div>
       </div>
     </section>
-
-    {/* CTA */}
-    <section className="py-24">
+    <div className="gradient-divider" />
+    <section className="py-28">
       <div className="container px-4 text-center">
-        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Need something custom?</h2>
-        <p className="text-muted-foreground max-w-lg mx-auto mb-8">Every business is unique. Let's design a solution that fits yours perfectly.</p>
+        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Need something custom?</h2>
+        <p className="text-muted-foreground max-w-lg mx-auto mb-8 text-lg">Every business is unique. Let's design a solution that fits yours perfectly.</p>
         <Button variant="glow" size="lg" asChild>
           <Link to="/contact">Get a Free Consultation <ArrowRight className="ml-2" size={16} /></Link>
         </Button>

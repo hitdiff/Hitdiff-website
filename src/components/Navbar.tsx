@@ -13,24 +13,27 @@ const navItems = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-strong">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="font-display text-xl font-bold tracking-tight flex items-center gap-1.5">
-          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground text-sm font-bold">HD</span>
-          <span className="hidden sm:inline">HitDiff <span className="text-gradient">Digital</span></span>
+        <Link to="/" className="font-display text-xl font-bold tracking-tight flex items-center gap-2">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground text-sm font-bold">
+            HD
+          </span>
+          <span className="hidden sm:inline">
+            HitDiff <span className="text-gradient">Digital</span>
+          </span>
         </Link>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+              className={`text-sm font-medium transition-colors hover:text-accent ${
+                pathname === item.path ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {item.label}
@@ -41,20 +44,18 @@ const Navbar = () => {
           </Button>
         </div>
 
-        {/* Mobile toggle */}
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-border/50 overflow-hidden"
+            className="md:hidden glass-strong border-t border-border/50 overflow-hidden"
           >
             <div className="flex flex-col gap-3 p-4">
               {navItems.map((item) => (
@@ -62,8 +63,8 @@ const Navbar = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setOpen(false)}
-                  className={`text-sm font-medium py-2 transition-colors hover:text-primary ${
-                    location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+                  className={`text-sm font-medium py-2 transition-colors hover:text-accent ${
+                    pathname === item.path ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {item.label}
