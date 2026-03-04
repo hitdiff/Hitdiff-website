@@ -66,17 +66,17 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.5 }}
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
-      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-500 overflow-hidden"
+      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-500 overflow-hidden flex flex-col"
     >
-      <div className="p-8">
+      <div className="p-8 flex flex-col flex-1">
         <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
           <service.icon size={24} className="text-accent" />
         </div>
         <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{service.desc}</p>
         <button
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
+          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200 mt-auto"
         >
           Key features
           <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>
