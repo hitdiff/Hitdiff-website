@@ -94,7 +94,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-4 pt-2 border-t border-border/30">
+            <div className="px-8 pb-8 pt-2 border-t border-border/30">
               <ul className="space-y-3">
                 {service.features.map((f, i) => (
                   <motion.li
@@ -109,17 +109,6 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
                   </motion.li>
                 ))}
               </ul>
-            </div>
-            <div className="px-8 pb-8">
-              <button
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
-              >
-                Close
-                <motion.div animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
-                  <ChevronDown size={16} />
-                </motion.div>
-              </button>
             </div>
           </motion.div>
         )}
@@ -157,7 +146,7 @@ const Services = () => (
     {/* Cards */}
     <section className="py-16">
       <div className="container px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-start">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} index={i} />
           ))}
