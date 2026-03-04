@@ -3,8 +3,8 @@ import CredibilityStrip from "@/components/home/CredibilityStrip";
 import ServicesSection from "@/components/home/ServicesSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import FeaturedWork from "@/components/home/FeaturedWork";
-import TechStack from "@/components/home/TechStack";
 import AboutSection from "@/components/home/AboutSection";
+import AIPoweredSection from "@/components/home/AIPoweredSection";
 import ContactSection from "@/components/home/ContactSection";
 
 const Index = () => (
@@ -17,9 +17,10 @@ const Index = () => (
     <HowItWorks />
     <div className="gradient-divider" />
     <FeaturedWork />
-    <TechStack />
     <div className="gradient-divider" />
     <AboutSection />
+    <div className="gradient-divider" />
+    <AIPoweredSection />
     <div className="gradient-divider" />
     <ContactSection />
   </div>
