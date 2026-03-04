@@ -1,105 +1,101 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Code2, Zap, BarChart3, ArrowRight, ChevronDown, CheckCircle2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import SectionHeading from "@/components/SectionHeading";
+import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, Bot } from "lucide-react";
 
 const services = [
   {
-    icon: Code2,
-    title: "Custom Web Design & Development",
-    desc: "Responsive, conversion-focused websites and web apps built with cutting-edge technology.",
+    icon: Paintbrush,
+    title: "Brand & UI Design",
+    desc: "Striking visual identities and interfaces that command attention and build trust instantly.",
     features: [
-      "Custom React & modern framework builds",
-      "Mobile-first responsive design",
-      "Performance-optimized (Core Web Vitals)",
-      "Built-in SEO foundations & schema markup",
-      "Landing pages & funnel architecture",
-      "E-commerce & membership site builds",
+      "Custom brand identity & visual systems",
+      "High-fidelity UI/UX design",
+      "Responsive web & mobile design",
+      "Design system creation & documentation",
+      "Conversion-focused landing pages",
     ],
-    examples: "Example: A local service business gets a blazing-fast website with integrated booking, lead capture forms that auto-feed into their CRM, and SEO that ranks them on page one.",
+  },
+  {
+    icon: Code2,
+    title: "Web Development",
+    desc: "Custom-built, lightning-fast websites and apps engineered for conversion and scale.",
+    features: [
+      "Custom full-stack web applications",
+      "Performance-optimized static & dynamic sites",
+      "API design & third-party integrations",
+      "SEO-ready architecture & metadata",
+      "Hosting, deployment & ongoing support",
+    ],
   },
   {
     icon: Zap,
-    title: "CRM & Workflow Automation",
-    desc: "Eliminate manual busywork. AI-powered systems that nurture leads, automate follow-ups, and manage your pipeline.",
+    title: "CRM & Automation",
+    desc: "AI-powered workflows that automate follow-ups, nurture leads, and eliminate busywork.",
     features: [
-      "Automated lead follow-up sequences (email, SMS, voicemail drops)",
-      "AI-driven pipeline management & lead scoring",
-      "Client onboarding automations",
-      "Appointment booking & reminder workflows",
-      "Zapier, Make, & custom API integrations",
-      "Real-time dashboards & performance reporting",
+      "Automated lead follow-up sequences",
+      "CRM setup, migration & optimization",
+      "Pipeline automation & task routing",
+      "Email & SMS drip campaigns",
+      "Analytics dashboards & reporting",
     ],
-    examples: "Example: A sales team automates their entire follow-up pipeline—new leads get instant SMS + email, a 3-day drip sequence, and auto-assignment to reps based on lead score.",
-  },
-  {
-    icon: BarChart3,
-    title: "Structured Digital Marketing",
-    desc: "Data-driven campaigns structured around your business goals with clear KPIs and measurable ROI.",
-    features: [
-      "Google & Meta paid ads management",
-      "SEO strategy & content optimization",
-      "Funnel design & conversion rate optimization",
-      "Email & SMS marketing automation",
-      "Analytics dashboards with real-time KPIs",
-      "A/B testing & performance iteration",
-    ],
-    examples: "Example: An e-commerce brand gets a full-funnel strategy—top-of-funnel Meta ads, optimized landing pages, retargeting sequences, and weekly performance reports.",
   },
 ];
 
 const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass rounded-2xl overflow-hidden gradient-card-border hover:glow-border transition-all duration-500"
+      transition={{ delay: index * 0.12, duration: 0.5 }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      className="glass rounded-2xl gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-500 overflow-hidden"
     >
       <div className="p-8">
-        <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-          <service.icon size={26} className="text-primary" />
+        <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+          <service.icon size={24} className="text-accent" />
         </div>
         <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
-        <p className="text-muted-foreground leading-relaxed mb-5 text-sm">{service.desc}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
         <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+          onClick={() => setOpen(!open)}
+          className="flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-200"
         >
-          {expanded ? "Show less" : "See what's included"}
-          <motion.span animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          Key features
+          <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>
             <ChevronDown size={16} />
-          </motion.span>
+          </motion.div>
         </button>
       </div>
+
       <AnimatePresence>
-        {expanded && (
+        {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-8 pb-8 space-y-4">
-              <div className="border-t border-border/50 pt-5">
-                <ul className="space-y-2.5">
-                  {service.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <CheckCircle2 size={16} className="text-accent mt-0.5 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-primary/5 rounded-lg p-4 border border-primary/10">
-                <p className="text-sm text-muted-foreground italic">{service.examples}</p>
-              </div>
+            <div className="px-8 pb-8 pt-2 border-t border-border/30">
+              <ul className="space-y-3">
+                {service.features.map((f, i) => (
+                  <motion.li
+                    key={f}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.3 }}
+                    className="flex items-start gap-3 text-sm text-muted-foreground"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                    {f}
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         )}
@@ -109,14 +105,34 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 };
 
 const Services = () => (
-  <div className="pt-24">
-    <section className="py-28">
+  <div className="pt-24 relative">
+    {/* Background */}
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 gradient-mesh opacity-40" />
+      <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
+    </div>
+
+    {/* Hero */}
+    <section className="py-20">
+      <div className="container px-4 text-center">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <div className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-accent mb-6 px-4 py-2 rounded-full border border-accent/20 bg-accent/5">
+            Services
+          </div>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+            What I <span className="text-gradient">Build</span>
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            End-to-end digital solutions designed to save time, drive growth, and stand out.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* Cards */}
+    <section className="py-16">
       <div className="container px-4">
-        <SectionHeading
-          badge="Services"
-          title="Everything you need to grow"
-          description="Lean, focused solutions built by someone who understands the full stack—from design to deployment to scale."
-        />
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} index={i} />
@@ -124,14 +140,49 @@ const Services = () => (
         </div>
       </div>
     </section>
-    <div className="gradient-divider" />
-    <section className="py-28">
+
+    {/* AI strip */}
+    <section className="py-20">
+      <div className="container px-4 text-center max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="glass rounded-2xl p-10 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 opacity-30" style={{
+            background: "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.05), transparent)"
+          }} />
+          <Bot size={28} className="text-accent mx-auto mb-4 relative z-10" />
+          <p className="relative z-10 text-lg text-muted-foreground leading-relaxed">
+            Every project is <span className="text-foreground font-semibold">powered by AI</span> — automating repetitive tasks, streamlining workflows, and delivering faster results with fewer errors.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="py-20">
       <div className="container px-4 text-center">
-        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Need something custom?</h2>
-        <p className="text-muted-foreground max-w-lg mx-auto mb-8 text-lg">Every business is unique. Let's design a solution that fits yours perfectly.</p>
-        <Button variant="glow" size="lg" asChild>
-          <Link to="/contact">Get a Free Consultation <ArrowRight className="ml-2" size={16} /></Link>
-        </Button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            Ready to get started?
+          </h2>
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+            Let's discuss your project and find the right solution.
+          </p>
+          <Button variant="glow" size="lg" asChild>
+            <Link to="/contact">
+              Start a Project <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   </div>
