@@ -53,7 +53,7 @@ const Contact = () => {
         <div className="absolute inset-0 gradient-mesh opacity-40" />
       </div>
 
-      <section className="py-28">
+      <section className="py-12 pb-6">
         <div className="container px-4">
           <SectionHeading
             badge="Contact"
