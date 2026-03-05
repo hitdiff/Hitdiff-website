@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
-const AIStatSection = ({ hideCta = false }: { hideCta?: boolean }) => (
-  <section className="py-28 relative overflow-hidden">
+const AIStatSection = () => (
+  <section className="py-16 relative overflow-hidden">
     {/* Background */}
     <div className="absolute inset-0" style={{
       background: "linear-gradient(180deg, hsl(var(--background)), hsl(222 50% 5%), hsl(var(--background)))"
@@ -47,20 +44,6 @@ const AIStatSection = ({ hideCta = false }: { hideCta?: boolean }) => (
           improving efficiency and productivity.
         </motion.p>
 
-        {!hideCta && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-          >
-            <Button variant="glow" size="lg" asChild>
-              <Link to="/services">
-                Learn How <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </Button>
-          </motion.div>
-        )}
       </motion.div>
     </div>
   </section>
