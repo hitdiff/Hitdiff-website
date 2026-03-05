@@ -128,7 +128,7 @@ const Services = () => (
       <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
     </div>
 
-    <section className="py-20">
+    <section className="py-12 pb-6">
       <div className="container px-4 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <div className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-accent mb-6 px-4 py-2 rounded-full border border-accent/20 bg-accent/5">
@@ -144,7 +144,7 @@ const Services = () => (
       </div>
     </section>
 
-    <section className="py-16">
+    <section className="py-12">
       <div className="container px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-start">
           {services.map((s, i) => (
