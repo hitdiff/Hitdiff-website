@@ -155,20 +155,47 @@ const HeroSection = () => (
     <div className="container relative z-10 px-4 py-32 text-center">
       <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] max-w-5xl mx-auto">
-          We Build Digital{" "}
-          <span className="text-gradient">Experiences</span>{" "}
-          That Perform
+          Digital systems that{" "}
+          <span className="text-gradient">hit different.</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Strategy, design, and engineering—fused into high-performance digital products that drive real growth.
+          Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
         </p>
-        <div className="mt-10 flex justify-center">
+
+        {/* Capability tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-6 flex items-center justify-center gap-3 flex-wrap"
+        >
+          {["Web Development", "Workflow Automation", "CRM Integration"].map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-medium tracking-wider uppercase px-4 py-1.5 rounded-full border border-border/60 bg-surface/50 text-muted-foreground"
+            >
+              {tag}
+            </span>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="mt-10 flex justify-center gap-4"
+        >
           <Button variant="glow" size="lg" asChild>
             <Link to="/contact">
               Start a Project <ArrowRight className="ml-2" size={16} />
             </Link>
           </Button>
-        </div>
+          <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
+            <Link to="/services">
+              View Services
+            </Link>
+          </Button>
+        </motion.div>
       </motion.div>
     </div>
 
