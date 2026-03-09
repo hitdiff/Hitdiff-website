@@ -171,22 +171,6 @@ const HeroSection = () => (
           Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
         </p>
 
-        {/* Capability tags */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-6 flex items-center justify-center gap-3 flex-wrap"
-        >
-          {["Web Development", "Workflow Automation", "CRM Integration"].map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-medium tracking-wider uppercase px-4 py-1.5 rounded-full border border-border/60 bg-surface/50 text-muted-foreground"
-            >
-              {tag}
-            </span>
-          ))}
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
