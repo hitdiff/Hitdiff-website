@@ -69,7 +69,7 @@ const ServicesSection = () => (
         className="text-center mt-14"
       >
         <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
-          <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
+          <Link to="/services">
             View All Services <ArrowRight className="ml-2" size={16} />
           </Link>
         </Button>
