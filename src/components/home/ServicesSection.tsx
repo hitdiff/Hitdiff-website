@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Code2, Zap, BarChart3, Paintbrush, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Code2, Zap, BarChart3, Paintbrush } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
 const services = [
