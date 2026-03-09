@@ -105,7 +105,7 @@ const TestimonialsSection = () => {
         />
 
         {/* Desktop: 3 visible */}
-        <div className="hidden md:block relative max-w-5xl mx-auto">
+        <div className="hidden md:block relative max-w-7xl mx-auto">
           <div className="overflow-hidden mx-10">
             <div
               ref={trackRef}
