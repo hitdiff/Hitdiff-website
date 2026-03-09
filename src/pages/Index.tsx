@@ -1,6 +1,5 @@
 import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
-import QuoteSection from "@/components/home/QuoteSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import FeaturedWork from "@/components/home/FeaturedWork";
 import AIStatSection from "@/components/home/AIStatSection";
@@ -12,7 +11,6 @@ const Index = () => (
     <AIStatSection />
     <div className="gradient-divider" />
     <ServicesSection />
-    <QuoteSection />
     <div className="gradient-divider" />
     <HowItWorks />
     <div className="gradient-divider" />
