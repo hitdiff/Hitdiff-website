@@ -45,12 +45,20 @@ const NetworkCanvas = () => {
       "139, 92, 246",   // purple
     ];
 
-    // Init nodes
+    // Init nodes — push away from center
     nodesRef.current = Array.from({ length: NODE_COUNT }, () => {
       const glow = Math.random() < 0.25;
+      let nx: number, ny: number;
+      do {
+        nx = Math.random() * w();
+        ny = Math.random() * h();
+      } while (
+        Math.abs(nx - w() / 2) < w() * CENTER_EXCLUSION &&
+        Math.abs(ny - h() / 2) < h() * CENTER_EXCLUSION
+      );
       return {
-        x: Math.random() * w(),
-        y: Math.random() * h(),
+        x: nx,
+        y: ny,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         r: glow ? 2.5 + Math.random() * 1.5 : 1.2 + Math.random() * 0.8,
