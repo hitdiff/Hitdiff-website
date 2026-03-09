@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
 const testimonials = [
@@ -36,53 +36,12 @@ const testimonials = [
   },
 ];
 
-const Stars = () => (
-  <div className="flex gap-0.5">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} size={11} className="fill-accent text-accent" />
-    ))}
-  </div>
-);
-
-const Card = ({ t, isCenter }: { t: typeof testimonials[0]; isCenter: boolean }) => (
-  <div
-    className={`glass rounded-2xl gradient-card-border aspect-[5/4] flex flex-col justify-between transition-shadow duration-500 ${
-      isCenter
-        ? "p-6 shadow-[0_16px_48px_-12px_hsl(var(--glow)/0.35)]"
-        : "p-5"
-    }`}
-  >
-    <div>
-      <div className="flex items-center justify-between mb-3">
-        <Quote size={16} className="text-accent/30" />
-        <Stars />
-      </div>
-      <p className={`leading-relaxed text-foreground/85 ${isCenter ? "text-sm" : "text-xs"}`}>
-        "{t.quote}"
-      </p>
-    </div>
-    <div className="flex items-center gap-2.5 border-t border-border/30 pt-3 mt-3">
-      <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-[10px] font-semibold text-primary flex-shrink-0">
-        {t.initials}
-      </div>
-      <div>
-        <p className="font-display text-xs font-semibold text-foreground leading-tight">{t.name}</p>
-        <p className="text-[10px] text-muted-foreground">{t.role}</p>
-      </div>
-    </div>
-  </div>
-);
-
 const TestimonialsSection = () => {
   const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(1);
   const len = testimonials.length;
 
   const navigate = useCallback(
-    (dir: number) => {
-      setDirection(dir);
-      setActive((p) => (p + dir + len) % len);
-    },
+    (dir: number) => setActive((p) => (p + dir + len) % len),
     [len]
   );
 
@@ -94,13 +53,37 @@ const TestimonialsSection = () => {
   const getIdx = (offset: number) => (active + offset + len) % len;
 
   const slots = [
-    { offset: -1, x: "-58%", scale: 0.9, opacity: 0.65, z: 10 },
+    { offset: -1, x: "-55%", scale: 0.88, opacity: 0.55, z: 10 },
     { offset: 0, x: "0%", scale: 1, opacity: 1, z: 30 },
-    { offset: 1, x: "58%", scale: 0.9, opacity: 0.65, z: 10 },
+    { offset: 1, x: "55%", scale: 0.88, opacity: 0.55, z: 10 },
   ];
 
+  const CardContent = ({ t, isCenter }: { t: typeof testimonials[0]; isCenter: boolean }) => (
+    <div
+      className={`glass rounded-2xl gradient-card-border flex flex-col justify-between h-full ${
+        isCenter ? "p-6 shadow-[0_16px_48px_-12px_hsl(var(--glow)/0.3)]" : "p-5"
+      }`}
+    >
+      <div>
+        <Quote size={16} className="text-accent/30 mb-3" />
+        <p className={`leading-relaxed text-foreground/85 ${isCenter ? "text-sm" : "text-xs"}`}>
+          "{t.quote}"
+        </p>
+      </div>
+      <div className="flex items-center gap-2.5 border-t border-border/30 pt-3 mt-4">
+        <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-[10px] font-semibold text-primary flex-shrink-0">
+          {t.initials}
+        </div>
+        <div>
+          <p className="font-display text-xs font-semibold text-foreground leading-tight">{t.name}</p>
+          <p className="text-[10px] text-muted-foreground">{t.role}</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <section className="py-20 overflow-hidden" style={{ perspective: "1200px" }}>
+    <section className="py-20 overflow-hidden">
       <div className="container px-4">
         <SectionHeading
           badge="Testimonials"
@@ -110,44 +93,30 @@ const TestimonialsSection = () => {
 
         {/* Desktop */}
         <div className="hidden md:block relative max-w-4xl mx-auto">
-          <div className="relative h-[240px] flex items-center justify-center">
-            <AnimatePresence mode="popLayout" custom={direction}>
-              {slots.map(({ offset, x, scale, opacity, z }) => {
-                const idx = getIdx(offset);
-                const t = testimonials[idx];
-                return (
-                  <motion.div
-                    key={`${idx}-${offset}`}
-                    layout
-                    initial={{
-                      x: direction > 0 ? "116%" : "-116%",
-                      scale: 0.8,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      x,
-                      scale,
-                      opacity,
-                      rotateY: offset * -3,
-                    }}
-                    exit={{
-                      x: direction > 0 ? "-116%" : "116%",
-                      scale: 0.8,
-                      opacity: 0,
-                    }}
-                    transition={{ duration: 0.55, ease: [0.32, 0.72, 0, 1] }}
-                    style={{
-                      position: "absolute",
-                      width: "320px",
-                      zIndex: z,
-                      transformStyle: "preserve-3d",
-                    }}
-                  >
-                    <Card t={t} isCenter={offset === 0} />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+          <div className="relative h-[220px] flex items-center justify-center">
+            {slots.map(({ offset, x, scale, opacity, z }) => {
+              const idx = getIdx(offset);
+              const t = testimonials[idx];
+              return (
+                <motion.div
+                  key={offset}
+                  animate={{
+                    x,
+                    scale,
+                    opacity,
+                  }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                  style={{
+                    position: "absolute",
+                    width: "320px",
+                    height: "190px",
+                    zIndex: z,
+                  }}
+                >
+                  <CardContent t={t} isCenter={offset === 0} />
+                </motion.div>
+              );
+            })}
           </div>
 
           <button
@@ -168,18 +137,15 @@ const TestimonialsSection = () => {
 
         {/* Mobile */}
         <div className="md:hidden">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
-              transition={{ duration: 0.3 }}
-              className="max-w-[300px] mx-auto"
-            >
-              <Card t={testimonials[active]} isCenter />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className="max-w-[300px] mx-auto h-[190px]"
+          >
+            <CardContent t={testimonials[active]} isCenter />
+          </motion.div>
           <div className="flex justify-center gap-4 mt-5">
             <button onClick={() => navigate(-1)} className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground"><ChevronLeft size={14} /></button>
             <button onClick={() => navigate(1)} className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground"><ChevronRight size={14} /></button>
@@ -191,7 +157,7 @@ const TestimonialsSection = () => {
           {testimonials.map((_, i) => (
             <button
               key={i}
-              onClick={() => { setDirection(i > active ? 1 : -1); setActive(i); }}
+              onClick={() => setActive(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === active ? "bg-accent w-5" : "bg-muted-foreground/25 w-1.5 hover:bg-muted-foreground/40"
               }`}
