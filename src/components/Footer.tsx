@@ -4,10 +4,9 @@ const Footer = () => (
   <footer className="border-t border-border/30 py-12 relative">
     <div className="absolute inset-0 bg-surface/30" />
     <div className="container relative mx-auto px-4">
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-16">
         <div>
-          <div className="flex items-center gap-2 font-display text-lg font-bold">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground text-xs font-bold">HD</span>
+          <div className="font-display text-lg font-bold">
             HitDiff <span className="text-gradient">Digital</span>
           </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">
