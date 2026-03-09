@@ -154,7 +154,7 @@ const Services = () => (
       </div>
     </section>
 
-    <AIStatSection />
+    <FeaturedWork />
 
     <section className="py-20">
       <div className="container px-4 text-center">

@@ -14,8 +14,6 @@ const Index = () => (
     <AIStatSection />
     <HowItWorks />
     <div className="gradient-divider" />
-    <FeaturedWork />
-    <div className="gradient-divider" />
     <TestimonialsSection />
     <div className="gradient-divider" />
     <ContactSection />
