@@ -59,6 +59,7 @@ const ServicesSection = () => (
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
           </motion.div>
         ))}
+      </motion.div>
     </div>
   </section>
 );
