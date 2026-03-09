@@ -162,14 +162,11 @@ const HeroSection = () => (
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Strategy, design, and engineering—fused into high-performance digital products that drive real growth.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="mt-10 flex justify-center">
           <Button variant="glow" size="lg" asChild>
             <Link to="/contact">
               Start a Project <ArrowRight className="ml-2" size={16} />
             </Link>
-          </Button>
-          <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30">
-            <Link to="/services">Explore Services</Link>
           </Button>
         </div>
       </motion.div>
