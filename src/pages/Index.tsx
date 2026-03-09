@@ -1,7 +1,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import HowItWorks from "@/components/home/HowItWorks";
-import FeaturedWork from "@/components/home/FeaturedWork";
+
 import AIStatSection from "@/components/home/AIStatSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ContactSection from "@/components/home/ContactSection";
