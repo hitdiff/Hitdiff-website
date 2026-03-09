@@ -18,14 +18,11 @@ const ContactSection = () => (
         <p className="text-muted-foreground text-lg mb-10">
           Have a project in mind? Let's talk.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="flex justify-center">
           <Button variant="glow" size="lg" asChild>
             <Link to="/contact">
               Get in Touch <ArrowRight className="ml-2" size={16} />
             </Link>
-          </Button>
-          <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
-            <Link to="/services">View Services</Link>
           </Button>
         </div>
       </motion.div>
