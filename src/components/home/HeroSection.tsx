@@ -168,7 +168,7 @@ const HeroSection = () => (
           <span className="text-gradient">hit different.</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
+          We engineer the digital systems and AI workflows that allow you to scale your business without increasing your workload.
         </p>
 
 
