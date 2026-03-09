@@ -12,7 +12,7 @@ const SectionHeading = ({ badge, title, description }: Props) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
-    className="text-center max-w-2xl mx-auto mb-16"
+    className="text-center max-w-4xl mx-auto mb-16"
   >
     {badge && (
       <span className="inline-block text-xs font-medium tracking-widest uppercase text-accent mb-4 px-3 py-1 rounded-full border border-accent/20 bg-accent/5">
