@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, Lightbulb, Globe } from "lucide-react";
+import { ArrowRight, Settings, TrendingUp, Zap } from "lucide-react";
 
-const strengths = [
-  { icon: Brain, title: "Technical Problem Solving", desc: "Breaking down complex challenges into elegant, scalable solutions." },
-  { icon: Lightbulb, title: "Creative Strategy", desc: "Blending analytical thinking with fresh ideas for unique outcomes." },
-  { icon: Globe, title: "Cross-Cultural Communication", desc: "Connecting across languages and backgrounds to deliver clarity." },
+const valueBlocks = [
+  { icon: Settings, title: "AUTOMATE", desc: "Turning manual friction into digital speed." },
+  { icon: TrendingUp, title: "SCALE", desc: "Systems built to grow as fast as your ambition." },
+  { icon: Zap, title: "DOMINATE", desc: "Leveraging AI to outpace the competition." },
 ];
 
 const About = () => (
@@ -82,39 +82,24 @@ const About = () => (
       </div>
     </section>
 
-    {/* Strengths */}
-    <section className="py-24 relative">
-      <div className="absolute inset-0" style={{
-        background: "linear-gradient(180deg, hsl(var(--background)), hsl(222 50% 5%), hsl(var(--background)))"
-      }} />
-      <div className="container relative z-10 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-3xl md:text-4xl font-bold">
-            Core <span className="text-gradient-teal">Strengths</span>
-          </h2>
-        </motion.div>
-
+    {/* Value Row */}
+    <section className="py-16">
+      <div className="container px-4">
         <div className="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {strengths.map((s, i) => (
+          {valueBlocks.map((block, i) => (
             <motion.div
-              key={s.title}
+              key={block.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.12, duration: 0.5 }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="glass rounded-2xl p-8 gradient-card-border hover:shadow-[0_0_30px_-8px_hsl(var(--glow)/0.25)] transition-all duration-500 text-center"
+              className="rounded-2xl p-8 text-center bg-primary/[0.04] backdrop-blur-xl border border-primary/15"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <s.icon size={24} className="text-accent" />
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                <block.icon size={24} className="text-accent" />
               </div>
-              <h3 className="font-display text-lg font-semibold mb-3">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              <h3 className="font-mono text-lg font-bold tracking-wider mb-3 text-foreground">{block.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{block.desc}</p>
             </motion.div>
           ))}
         </div>
