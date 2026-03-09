@@ -168,15 +168,14 @@ const HeroSection = () => (
           <span className="text-gradient">hit different.</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          We engineer the digital systems and AI workflows that allow you to scale your business without increasing your workload.
+          Systems that allow you to scale your business without increasing your workload.
         </p>
-
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-10 flex justify-center gap-4"
+          className="mt-16 flex justify-center gap-4"
         >
           <Button variant="glow" size="lg" asChild>
             <Link to="/contact">
