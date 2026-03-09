@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, BarChart3 } from "lucide-react";
-import AIStatSection from "@/components/home/AIStatSection";
+import FeaturedWork from "@/components/home/FeaturedWork";
 
 const services = [
   {
@@ -154,7 +154,7 @@ const Services = () => (
       </div>
     </section>
 
-    <AIStatSection />
+    <FeaturedWork />
 
     <section className="py-20">
       <div className="container px-4 text-center">
