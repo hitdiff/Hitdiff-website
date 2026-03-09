@@ -37,6 +37,7 @@ const NetworkCanvas = () => {
     const h = () => canvas.offsetHeight;
     const NODE_COUNT = 60;
     const CONNECTION_DIST = 180;
+    const CENTER_EXCLUSION = 0.25; // fraction of width/height to keep clear in center
 
     const colors = [
       "59, 130, 246",   // blue
