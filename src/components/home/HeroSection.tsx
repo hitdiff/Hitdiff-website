@@ -2,217 +2,201 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Users, Zap, BarChart3, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-/* ── Subtle animated grid background ── */
-const GridBackground = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0" style={{
-      background: "radial-gradient(ellipse at 30% 50%, hsl(222 47% 10%), hsl(222 47% 7%) 50%, hsl(220 20% 3%) 100%)"
-    }} />
-    <div className="absolute inset-0 grid-pattern opacity-30" />
-    <div
-      className="absolute top-1/3 left-1/4 w-[600px] h-[400px] rounded-full"
-      style={{
-        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.06), transparent 65%)",
-        filter: "blur(80px)",
-      }}
-    />
-    <div
-      className="absolute bottom-1/4 right-1/4 w-[500px] h-[300px] rounded-full"
-      style={{
-        background: "radial-gradient(ellipse, hsl(var(--glow-purple) / 0.04), transparent 65%)",
-        filter: "blur(80px)",
-      }}
-    />
-  </div>
-);
+interface Node {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  r: number;
+  glow: boolean;
+  color: string;
+}
 
-/* ── Dashboard visualization ── */
-const DashboardVisual = () => {
-  const barHeights = [40, 65, 50, 80, 60, 90, 75];
+const NetworkCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const nodesRef = useRef<Node[]>([]);
+  const animRef = useRef<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const w = () => canvas.offsetWidth;
+    const h = () => canvas.offsetHeight;
+    const NODE_COUNT = 60;
+    const CONNECTION_DIST = 180;
+
+    const colors = [
+      "59, 130, 246",   // blue
+      "20, 241, 217",   // teal
+      "139, 92, 246",   // purple
+    ];
+
+    // Init nodes
+    nodesRef.current = Array.from({ length: NODE_COUNT }, () => {
+      const glow = Math.random() < 0.25;
+      return {
+        x: Math.random() * w(),
+        y: Math.random() * h(),
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: glow ? 2.5 + Math.random() * 1.5 : 1.2 + Math.random() * 0.8,
+        glow,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      };
+    });
+
+    const draw = () => {
+      const W = w();
+      const H = h();
+      ctx.clearRect(0, 0, W, H);
+
+      const nodes = nodesRef.current;
+
+      // Update positions
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        n.x = Math.max(0, Math.min(W, n.x));
+        n.y = Math.max(0, Math.min(H, n.y));
+      }
+
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DIST) {
+            const opacity = (1 - dist / CONNECTION_DIST) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (const n of nodes) {
+        if (n.glow) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+          const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
+          grad.addColorStop(0, `rgba(${n.color}, 0.2)`);
+          grad.addColorStop(1, `rgba(${n.color}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = n.glow
+          ? `rgba(${n.color}, 0.7)`
+          : `rgba(${n.color}, 0.25)`;
+        ctx.fill();
+      }
+
+      animRef.current = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-      className="relative w-full max-w-lg mx-auto"
-    >
-      {/* Main dashboard card */}
-      <div className="glass-strong rounded-2xl p-6 space-y-5">
-        {/* Header row */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center">
-              <BarChart3 size={16} className="text-primary" />
-            </div>
-            <span className="text-sm font-medium text-foreground">Performance</span>
-          </div>
-          <span className="text-xs text-accent font-medium flex items-center gap-1">
-            <ArrowUpRight size={12} /> +24.5%
-          </span>
-        </div>
-
-        {/* Bar chart */}
-        <div className="flex items-end gap-2 h-24">
-          {barHeights.map((h, i) => (
-            <motion.div
-              key={i}
-              initial={{ height: 0 }}
-              animate={{ height: `${h}%` }}
-              transition={{ duration: 0.6, delay: 0.6 + i * 0.08, ease: "easeOut" }}
-              className="flex-1 rounded-md"
-              style={{
-                background: i === barHeights.length - 2
-                  ? "hsl(var(--primary))"
-                  : "hsl(var(--primary) / 0.2)",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: "Leads", value: "1,284", icon: Users },
-            { label: "Conversions", value: "342", icon: TrendingUp },
-            { label: "Automations", value: "56", icon: Zap },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + i * 0.1, duration: 0.4 }}
-              className="rounded-xl bg-surface/80 p-3 text-center"
-            >
-              <stat.icon size={14} className="text-primary mx-auto mb-1" />
-              <div className="text-sm font-semibold text-foreground">{stat.value}</div>
-              <div className="text-[10px] text-muted-foreground">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Floating pipeline card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.5 }}
-        className="absolute -bottom-6 -left-6 glass rounded-xl p-4 w-52 shadow-lg"
-      >
-        <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">Pipeline</div>
-        <div className="space-y-2">
-          {[
-            { stage: "Qualified", count: 18, pct: 75 },
-            { stage: "Proposal", count: 7, pct: 45 },
-            { stage: "Closed", count: 12, pct: 90 },
-          ].map((item) => (
-            <div key={item.stage} className="space-y-1">
-              <div className="flex justify-between text-[11px]">
-                <span className="text-muted-foreground">{item.stage}</span>
-                <span className="text-foreground font-medium">{item.count}</span>
-              </div>
-              <div className="h-1 rounded-full bg-surface-bright overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${item.pct}%` }}
-                  transition={{ delay: 1.4, duration: 0.6, ease: "easeOut" }}
-                  className="h-full rounded-full bg-primary"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Floating automation card */}
-      <motion.div
-        initial={{ opacity: 0, y: -15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.5 }}
-        className="absolute -top-4 -right-4 glass rounded-xl p-3 shadow-lg"
-      >
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-accent/15 flex items-center justify-center">
-            <CheckCircle2 size={12} className="text-accent" />
-          </div>
-          <div>
-            <div className="text-[11px] font-medium text-foreground">Workflow Active</div>
-            <div className="text-[10px] text-muted-foreground">12 tasks automated</div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
   );
 };
 
-/* ── Hero Section ── */
 const HeroSection = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
-    <GridBackground />
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    {/* Gradient depth base */}
+    <div className="absolute inset-0" style={{
+      background: "radial-gradient(ellipse at 50% 40%, hsl(222 47% 10%), hsl(222 47% 7%) 50%, hsl(220 20% 3%) 100%)"
+    }} />
 
-    <div className="container relative z-10 px-4 py-24 md:py-32">
-      <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-        {/* Left: Content */}
+    {/* Neural network canvas */}
+    <NetworkCanvas />
+
+    {/* Soft glow behind center */}
+    <div
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
+      style={{
+        background: "radial-gradient(ellipse, hsl(var(--primary) / 0.08), transparent 65%)",
+        filter: "blur(60px)",
+      }}
+    />
+
+    {/* Content */}
+    <div className="container relative z-10 px-4 py-32 text-center">
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+        <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] max-w-5xl mx-auto">
+          Digital systems that{" "}
+          <span className="text-gradient">hit different.</span>
+        </h1>
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
+        </p>
+
+        {/* Capability tags */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-6 flex items-center justify-center gap-3 flex-wrap"
         >
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08]">
-            Digital systems that{" "}
-            <span className="text-gradient">hit different.</span>
-          </h1>
-
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            <Button variant="glow" size="lg" asChild>
-              <Link to="/contact">
-                Start a Project <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              asChild
-              className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300"
+          {["Web Development", "Workflow Automation", "CRM Integration"].map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-medium tracking-wider uppercase px-4 py-1.5 rounded-full border border-border/60 bg-surface/50 text-muted-foreground"
             >
-              <Link to="/services">View Services</Link>
-            </Button>
-          </motion.div>
-
-          {/* Capability tags */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="mt-8 flex flex-wrap gap-2"
-          >
-            {["Web Development", "Workflow Automation", "CRM Integration"].map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-medium tracking-wider uppercase px-3 py-1.5 rounded-full border border-border/50 bg-surface/40 text-muted-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </motion.div>
+              {tag}
+            </span>
+          ))}
         </motion.div>
 
-        {/* Right: Visual */}
-        <div className="hidden lg:block">
-          <DashboardVisual />
-        </div>
-      </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="mt-10 flex justify-center gap-4"
+        >
+          <Button variant="glow" size="lg" asChild>
+            <Link to="/contact">
+              Start a Project <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </Button>
+          <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
+            <Link to="/services">
+              View Services
+            </Link>
+          </Button>
+        </motion.div>
+      </motion.div>
     </div>
 
     {/* Bottom fade */}
