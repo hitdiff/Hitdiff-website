@@ -19,70 +19,64 @@ const About = () => (
     </div>
 
     {/* Hero */}
-    <section className="py-12 pb-6">
-      <div className="container px-4 text-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <div className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-accent mb-6 px-4 py-2 rounded-full border border-accent/20 bg-accent/5">
-            About
-          </div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold">
-            About <span className="text-gradient">Elijah</span>
-          </h1>
-        </motion.div>
-      </div>
-    </section>
+    <section className="relative py-[100px] overflow-hidden">
+      {/* Deep black bg with subtle navy radial gradient */}
+      <div className="absolute inset-0" style={{
+        background: "radial-gradient(ellipse at 65% 50%, hsl(222 50% 12% / 0.8), hsl(var(--background)) 70%)"
+      }} />
 
-    {/* Photo + Bio */}
-    <section className="py-12">
-      <div className="container px-4">
+      <div className="container px-4 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 max-w-6xl mx-auto items-center">
-          {/* Photo */}
+          {/* Left — Founder image */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             className="md:w-5/12 flex-shrink-0"
           >
             <div className="relative">
-              <div className="absolute -inset-4 rounded-3xl opacity-50 blur-2xl" style={{
-                background: "radial-gradient(ellipse, hsl(var(--primary) / 0.25), hsl(var(--secondary) / 0.12), transparent 70%)"
+              {/* Electric blue outer glow */}
+              <div className="absolute -inset-5 rounded-3xl blur-2xl opacity-50" style={{
+                background: "radial-gradient(ellipse, hsl(var(--primary) / 0.4), transparent 70%)"
               }} />
-              <div className="relative glass rounded-3xl p-3 shadow-2xl">
-                <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/5 flex items-center justify-center overflow-hidden relative">
-                  <div className="absolute inset-0 grid-pattern opacity-10" />
-                  <div className="text-center space-y-4 relative z-10">
-                    <div className="w-28 h-28 rounded-full bg-primary/15 mx-auto flex items-center justify-center border border-primary/20">
-                      <span className="font-display text-4xl font-bold text-primary">E</span>
+              <div className="relative rounded-2xl overflow-hidden border-2 border-primary/25 shadow-[0_0_40px_-8px_hsl(var(--primary)/0.35)]">
+                <div className="aspect-[3/4] bg-gradient-to-br from-muted/40 via-card to-muted/20 flex items-center justify-center">
+                  <div className="text-center space-y-3">
+                    <div className="w-24 h-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center border border-primary/20">
+                      <span className="font-display text-3xl font-bold text-primary">E</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">Your photo here</p>
+                    <p className="text-sm text-muted-foreground">Founder photo</p>
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-3 -right-3 w-32 h-32 rounded-full blur-3xl opacity-30" style={{ background: "hsl(var(--accent))" }} />
             </div>
           </motion.div>
 
-          {/* Text */}
+          {/* Right — Text */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="md:w-7/12"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              Building at the intersection of{" "}
-              <span className="text-gradient">creativity & code</span>
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-              I hold a degree in Computer Science, combining technical knowledge with creative problem-solving. I've always been passionate about sports — golf, soccer, and basketball — which teach me strategy, teamwork, and focus. Traveling and exploring new cultures inspires my work, giving me fresh perspectives and creative ideas. I also enjoy connecting with people across languages and backgrounds, which helps me communicate complex ideas clearly and build meaningful solutions.
-            </p>
-            <Button variant="glow" size="lg" asChild>
-              <Link to="/contact">
-                Let's Work Together <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </Button>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              The Human Edge Behind{" "}
+              <span className="text-gradient">the AI.</span>
+            </h1>
+
+            <div className="space-y-5 text-lg text-muted-foreground leading-relaxed mb-8">
+              <p>
+                I started hitdiff after watching too many small businesses drown in manual tasks, scattered tools, and processes that cost them hours every single week. The problem was never a lack of effort — it was a lack of systems.
+              </p>
+              <p>
+                Our mission is simple: deliver end-to-end digital solutions that help SMBs move faster, stay organized, and scale without the overhead. From AI-powered automation to full web builds, every project is designed to eliminate friction.
+              </p>
+              <p>
+                With a background in Computer Science, years of volunteering in community tech initiatives, and deep expertise in workflow optimization, I bring both the technical chops and the human understanding to every engagement.
+              </p>
+            </div>
+
+            <p className="italic text-muted-foreground text-base">— Founder, hitdiff</p>
           </motion.div>
         </div>
       </div>
