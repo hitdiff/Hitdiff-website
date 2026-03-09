@@ -4,7 +4,7 @@ const Footer = () => (
   <footer className="border-t border-border/30 py-12 relative">
     <div className="absolute inset-0 bg-surface/30" />
     <div className="container relative mx-auto px-4">
-      <div className="grid md:grid-cols-3 gap-16">
+      <div className="grid md:grid-cols-3 gap-16 w-full">
         <div>
           <div className="font-display text-lg font-bold">
             HitDiff <span className="text-gradient">Digital</span>
