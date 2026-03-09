@@ -56,7 +56,7 @@ const Contact = () => {
       <section className="py-12 pb-6">
         <div className="container px-4">
           <SectionHeading
-            title="Let's start a conversation"
+            title={<>Let's <span className="text-gradient">Start</span> a <span className="text-gradient">Conversation</span></>}
             description="Tell me about your project and I'll get back to you within 24 hours with a tailored plan."
           />
 
