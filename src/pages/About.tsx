@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, Lightbulb, Globe } from "lucide-react";
+import { ArrowRight, Settings, TrendingUp, Zap } from "lucide-react";
 
-const strengths = [
-  { icon: Brain, title: "Technical Problem Solving", desc: "Breaking down complex challenges into elegant, scalable solutions." },
-  { icon: Lightbulb, title: "Creative Strategy", desc: "Blending analytical thinking with fresh ideas for unique outcomes." },
-  { icon: Globe, title: "Cross-Cultural Communication", desc: "Connecting across languages and backgrounds to deliver clarity." },
+const valueBlocks = [
+  { icon: Settings, title: "AUTOMATE", desc: "Turning manual friction into digital speed." },
+  { icon: TrendingUp, title: "SCALE", desc: "Systems built to grow as fast as your ambition." },
+  { icon: Zap, title: "DOMINATE", desc: "Leveraging AI to outpace the competition." },
 ];
 
 const About = () => (
