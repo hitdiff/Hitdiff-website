@@ -31,14 +31,14 @@ const testimonials = [
 ];
 
 const Card = ({ t }: { t: typeof testimonials[0] }) => (
-  <div className="glass rounded-2xl p-6 gradient-card-border h-full flex flex-col justify-between hover:-translate-y-1 hover:shadow-[0_12px_32px_-8px_hsl(var(--glow)/0.2)] transition-all duration-300">
+  <div className="glass rounded-2xl p-8 gradient-card-border h-full flex flex-col justify-between">
     <div>
-      <Quote size={16} className="text-accent/30 mb-3" />
-      <p className="text-sm leading-relaxed text-foreground/85">"{t.quote}"</p>
+      <Quote size={20} className="text-accent/30 mb-4" />
+      <p className="text-base leading-relaxed text-foreground/85">"{t.quote}"</p>
     </div>
-    <div className="border-t border-border/30 pt-3 mt-4">
-      <p className="font-display text-sm font-semibold text-foreground">— {t.name}</p>
-      <p className="text-xs text-muted-foreground">{t.role}</p>
+    <div className="border-t border-border/30 pt-4 mt-5">
+      <p className="font-display text-base font-semibold text-foreground">— {t.name}</p>
+      <p className="text-sm text-muted-foreground">{t.role}</p>
     </div>
   </div>
 );
@@ -105,7 +105,7 @@ const TestimonialsSection = () => {
         />
 
         {/* Desktop: 3 visible */}
-        <div className="hidden md:block relative max-w-5xl mx-auto">
+        <div className="hidden md:block relative max-w-7xl mx-auto">
           <div className="overflow-hidden mx-10">
             <div
               ref={trackRef}
