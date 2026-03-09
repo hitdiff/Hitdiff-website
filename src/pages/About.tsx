@@ -1,27 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Settings, TrendingUp, Zap, BarChart3, Workflow, Globe } from "lucide-react";
-
-const caseStudies = [
-  { result: "90% Efficiency Increase", desc: "Automated intake and reporting for a growing agency, cutting manual work from 20 hrs/week to 2.", category: "Workflow Automation", icon: Workflow, color: "from-primary/20 to-secondary/20" },
-  { result: "3x Revenue Growth", desc: "Built a full-stack platform with AI-driven lead scoring that tripled qualified pipeline in 6 months.", category: "Full-Stack Platform", icon: BarChart3, color: "from-secondary/20 to-accent/10" },
-  { result: "50% Faster Go-to-Market", desc: "End-to-end e-commerce build with integrated marketing automation, launched in half the expected timeline.", category: "E-Commerce & Marketing", icon: Globe, color: "from-accent/10 to-primary/20" },
-];
-
-const valueBlocks = [
-  { icon: Settings, title: "AUTOMATE", desc: "Turning manual friction into digital speed." },
-  { icon: TrendingUp, title: "SCALE", desc: "Systems built to grow as fast as your ambition." },
-  { icon: Zap, title: "DOMINATE", desc: "Leveraging AI to outpace the competition." },
-];
+import { ArrowRight } from "lucide-react";
 
 const About = () => (
   <div className="pt-24 relative">
     {/* Background */}
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 gradient-mesh opacity-40" />
-      <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
     </div>
 
     {/* Hero */}
@@ -88,77 +74,6 @@ const About = () => (
       </div>
     </section>
 
-    {/* Value Row */}
-    <section className="py-16">
-      <div className="container px-4">
-        <div className="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {valueBlocks.map((block, i) => (
-            <motion.div
-              key={block.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5 }}
-              className="rounded-2xl p-8 text-center bg-primary/[0.04] backdrop-blur-xl border border-primary/15"
-            >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                <block.icon size={24} className="text-accent" />
-              </div>
-              <h3 className="font-mono text-lg font-bold tracking-wider mb-3 text-foreground">{block.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{block.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* Case Studies */}
-    <section className="py-24 relative">
-      <div className="container px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Case <span className="text-gradient">Studies</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Real-world applications of the hitdiff methodology.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {caseStudies.map((study, i) => (
-            <motion.div
-              key={study.result}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5 }}
-              className="group"
-            >
-              <div className="glass rounded-2xl overflow-hidden border border-border/40 hover:border-primary/50 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.3)] transition-all duration-500">
-                <div className={`aspect-[4/3] bg-gradient-to-br ${study.color} flex items-center justify-center relative`}>
-                  <div className="absolute inset-0 grid-pattern opacity-10" />
-                  <div className="text-center space-y-2 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-card/80 backdrop-blur flex items-center justify-center mx-auto">
-                      <study.icon size={20} className="text-primary" />
-                    </div>
-                    <p className="text-xs text-muted-foreground font-medium">{study.category}</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors">{study.result}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">{study.desc}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
 
     {/* CTA */}
     <div className="gradient-divider" />
