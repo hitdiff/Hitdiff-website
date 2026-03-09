@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 interface Props {
   badge?: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
 }
 
