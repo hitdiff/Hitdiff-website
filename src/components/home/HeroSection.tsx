@@ -37,6 +37,7 @@ const NetworkCanvas = () => {
     const h = () => canvas.offsetHeight;
     const NODE_COUNT = 60;
     const CONNECTION_DIST = 180;
+    const CENTER_EXCLUSION = 0.25; // fraction of width/height to keep clear in center
 
     const colors = [
       "59, 130, 246",   // blue
@@ -44,12 +45,20 @@ const NetworkCanvas = () => {
       "139, 92, 246",   // purple
     ];
 
-    // Init nodes
+    // Init nodes — push away from center
     nodesRef.current = Array.from({ length: NODE_COUNT }, () => {
       const glow = Math.random() < 0.25;
+      let nx: number, ny: number;
+      do {
+        nx = Math.random() * w();
+        ny = Math.random() * h();
+      } while (
+        Math.abs(nx - w() / 2) < w() * CENTER_EXCLUSION &&
+        Math.abs(ny - h() / 2) < h() * CENTER_EXCLUSION
+      );
       return {
-        x: Math.random() * w(),
-        y: Math.random() * h(),
+        x: nx,
+        y: ny,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         r: glow ? 2.5 + Math.random() * 1.5 : 1.2 + Math.random() * 0.8,
@@ -162,22 +171,6 @@ const HeroSection = () => (
           Websites, automation, and data-driven workflows designed to help businesses operate smarter and scale with confidence.
         </p>
 
-        {/* Capability tags */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-6 flex items-center justify-center gap-3 flex-wrap"
-        >
-          {["Web Development", "Workflow Automation", "CRM Integration"].map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-medium tracking-wider uppercase px-4 py-1.5 rounded-full border border-border/60 bg-surface/50 text-muted-foreground"
-            >
-              {tag}
-            </span>
-          ))}
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
