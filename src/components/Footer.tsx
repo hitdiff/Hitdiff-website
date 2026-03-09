@@ -28,7 +28,7 @@ const Footer = () => (
           <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
         </div>
       </div>
-      <div className="mt-10 pt-6 border-t border-border/30 text-center text-xs text-muted-foreground">
+      <div className="border-t border-border/30 text-center text-xs text-muted-foreground mt-10 pt-4">
         © {new Date().getFullYear()} HitDiff Digital. All rights reserved.
       </div>
     </div>
