@@ -81,6 +81,54 @@ const About = () => (
     </section>
 
 
+    {/* Case Studies */}
+    <section className="py-24 relative">
+      <div className="container px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Case <span className="text-gradient">Studies</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            Real-world applications of the hitdiff methodology.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {caseStudies.map((study, i) => (
+            <motion.div
+              key={study.result}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.5 }}
+              className="group"
+            >
+              <div className="glass rounded-2xl overflow-hidden border border-border/40 hover:border-primary/50 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.3)] transition-all duration-500">
+                <div className={`aspect-[4/3] bg-gradient-to-br ${study.color} flex items-center justify-center relative`}>
+                  <div className="absolute inset-0 grid-pattern opacity-10" />
+                  <div className="text-center space-y-2 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-card/80 backdrop-blur flex items-center justify-center mx-auto">
+                      <study.icon size={20} className="text-primary" />
+                    </div>
+                    <p className="text-xs text-muted-foreground font-medium">{study.category}</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors">{study.result}</h3>
+                  <p className="text-sm text-muted-foreground mt-2">{study.desc}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     {/* CTA */}
     <div className="gradient-divider" />
     <section className="py-28">
