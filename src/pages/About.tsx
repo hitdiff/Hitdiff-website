@@ -6,10 +6,8 @@ import { ArrowRight } from "lucide-react";
 const About = () => (
   <div className="pt-24 relative">
     {/* Background */}
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 gradient-mesh opacity-40" />
-      <div className="absolute inset-0 grid-pattern opacity-[0.06]" />
     </div>
 
     {/* Hero */}
