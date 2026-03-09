@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Settings, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, Settings, TrendingUp, Zap, BarChart3, Workflow, Globe } from "lucide-react";
+
+const caseStudies = [
+  { result: "90% Efficiency Increase", desc: "Automated intake and reporting for a growing agency, cutting manual work from 20 hrs/week to 2.", category: "Workflow Automation", icon: Workflow, color: "from-primary/20 to-secondary/20" },
+  { result: "3x Revenue Growth", desc: "Built a full-stack platform with AI-driven lead scoring that tripled qualified pipeline in 6 months.", category: "Full-Stack Platform", icon: BarChart3, color: "from-secondary/20 to-accent/10" },
+  { result: "50% Faster Go-to-Market", desc: "End-to-end e-commerce build with integrated marketing automation, launched in half the expected timeline.", category: "E-Commerce & Marketing", icon: Globe, color: "from-accent/10 to-primary/20" },
+];
 
 const valueBlocks = [
   { icon: Settings, title: "AUTOMATE", desc: "Turning manual friction into digital speed." },
