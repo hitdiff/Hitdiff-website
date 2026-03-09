@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
       <div className="container px-4">
         <SectionHeading
           badge="Testimonials"
-          title="Trusted by growing businesses"
+          title="Trusted by businesses"
           description="Hear from the teams we've helped grow, automate, and scale."
         />
 
