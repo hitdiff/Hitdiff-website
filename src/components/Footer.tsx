@@ -39,6 +39,7 @@ const Footer = () => (
             <div className="flex flex-col gap-2">
               <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
               <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+              <p className="text-sm text-muted-foreground">Toronto, Ontario</p>
             </div>
           </div>
         </div>
