@@ -56,6 +56,7 @@ const TestimonialsSection = () => {
           badge="Testimonials"
           title="Trusted by growing businesses"
           description="Hear from the teams we've helped grow, automate, and scale."
+          singleLine
         />
 
         <div className="relative max-w-2xl mx-auto">
