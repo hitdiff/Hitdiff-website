@@ -8,10 +8,9 @@ import ContactSection from "@/components/home/ContactSection";
 const Index = () => (
   <div>
     <HeroSection />
-    <AIStatSection />
     <div className="gradient-divider" />
     <ServicesSection />
-    <div className="gradient-divider" />
+    <AIStatSection />
     <HowItWorks />
     <div className="gradient-divider" />
     <FeaturedWork />
