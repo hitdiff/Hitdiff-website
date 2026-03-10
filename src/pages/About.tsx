@@ -109,9 +109,8 @@ const About = () => (
                 places, I immersed myself in them — learning the culture,
                 connecting with locals, and deepening my Spanish along the way.
                 That time completely shifted how I see the world and how I
-                approach building relationships with people. Latin America has a
-                special place in my heart and I'm not done exploring it. When
-                I'm back home in Toronto you'll find me playing sports, trying
+                approach building relationships with people. When
+                I'm back home you'll find me playing sports, trying
                 something new or exploring. That drive to immerse myself, figure
                 things out, and keep moving forward didn't stay on the road — it
                 came back with me and sits at the core of everything I build at
