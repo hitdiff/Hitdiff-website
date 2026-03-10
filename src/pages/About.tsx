@@ -103,22 +103,24 @@ const About = () => (
               </p>
               <p>
                 Outside of the work, I'm someone who's always chasing new
-                experiences. I've traveled extensively across Latin America —
-                visiting 7 countries, immersing myself in local cultures,
-                learning the rhythms of different communities, and sharpening my
-                Spanish along the way. Those experiences didn't just broaden my
-                perspective — they shaped how I think about people,
-                communication, and building things that actually work for the
-                humans using them. When I'm not building systems or exploring
-                new places, you'll find me on the basketball court, the soccer
-                field, or the golf course. That same drive to keep improving,
-                keep moving, and keep learning is what I bring to every client I
-                work with.
+                experiences. Over the past couple of years I've travelled Latin
+                America — 7 countries, countless cities, and lessons that no
+                classroom could ever replicate. I didn't just visit these
+                places, I immersed myself in them — learning the culture,
+                connecting with locals, and deepening my Spanish along the way.
+                That time completely shifted how I see the world and how I
+                approach building relationships with people. Latin America has a
+                special place in my heart and I'm not done exploring it. When
+                I'm back home in Toronto you'll find me playing sports, trying
+                something new or exploring. That drive to immerse myself, figure
+                things out, and keep moving forward didn't stay on the road — it
+                came back with me and sits at the core of everything I build at
+                HitDiff.
               </p>
             </div>
 
             <p className="italic text-muted-foreground text-base">
-              — ELijah Hwang
+              — Elijah Hwang
             </p>
           </motion.div>
         </div>
