@@ -81,7 +81,7 @@ const About = () => (
             className="md:w-7/12"
           >
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              The human behind{" "}
+              Behind{" "}
               <span className="text-gradient">HitDiff</span>
             </h1>
 
