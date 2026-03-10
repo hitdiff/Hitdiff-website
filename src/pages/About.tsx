@@ -81,8 +81,8 @@ const About = () => (
             className="md:w-7/12"
           >
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-              The Human behind{" "}
-              <span className="text-gradient">the AI.</span>
+              The human behind{" "}
+              <span className="text-gradient">the Systems.</span>
             </h1>
 
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed mb-8">
@@ -93,7 +93,7 @@ const About = () => (
                 — it was a lack of systems.{" "}
               </p>
               <p>
-                Our mission is simple: deliver end-to-end digital solutions —
+                The mission is simple: deliver end-to-end digital solutions:
                 websites, CRM pipelines, marketing and AI-powered automations
                 that do the repetitive work so you can focus on actually
                 growing. Just clean, intentional systems built around how your
@@ -101,8 +101,7 @@ const About = () => (
                 scale.
               </p>
               <p>
-                Outside of work I'm always chasing new experiences. Over the
-                past couple of years I travelled across Latin America — 7
+                Outside of work I'm always chasing new experiences. I've travelled across Latin America — 7
                 countries, countless cities, and lessons no classroom could
                 replicate. Learning the culture, connecting with locals, and
                 deepening my Spanish along the way completely shifted how I see
