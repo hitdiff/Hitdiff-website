@@ -1,10 +1,10 @@
-import HeroSection from "@/components/home/HeroSection";
-import ServicesSection from "@/components/home/ServicesSection";
-import HowItWorks from "@/components/home/HowItWorks";
+import HeroSection from "../components/home/HeroSection";
+import ServicesSection from "../components/home/ServicesSection";
+import HowItWorks from "../components/home/HowItWorks";
 
-import AIStatSection from "@/components/home/AIStatSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import ContactSection from "@/components/home/ContactSection";
+import AIStatSection from "../components/home/AIStatSection";
+import TestimonialsSection from "../components/home/TestimonialsSection";
+import ContactSection from "../components/home/ContactSection";
 
 const Index = () => (
   <div>

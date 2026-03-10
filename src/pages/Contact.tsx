@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Label } from "../components/ui/label";
 import { Send, Mail, Calendar, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading from "../components/SectionHeading";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -75,7 +75,7 @@ const Contact = () => {
               </div>
               <div>
                 <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="you@company.com" />
+                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="you..company.com" />
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
               </div>
               <div>
@@ -104,7 +104,7 @@ const Contact = () => {
                     <div className="space-y-3">
                       <div>
                         <p className="text-xs text-muted-foreground/70 mb-0.5">Email</p>
-                        <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
+                        <p className="text-sm text-muted-foreground">hello..hitdiffdigital.com</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground/70 mb-0.5">Phone</p>

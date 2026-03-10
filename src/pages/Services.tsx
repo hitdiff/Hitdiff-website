@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { ArrowRight, ChevronDown, Paintbrush, Code2, Zap, BarChart3 } from "lucide-react";
-import FeaturedWork from "@/components/home/FeaturedWork";
+import FeaturedWork from "../components/home/FeaturedWork";
 
 const services = [
   {
