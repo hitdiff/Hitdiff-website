@@ -105,7 +105,7 @@ const About = () => (
                 countries, countless cities, and lessons no classroom could
                 replicate. Learning the culture, connecting with locals, and
                 deepening my Spanish along the way completely shifted how I see
-                the world and how I build relationships with people. Back home
+                the world and build relationships with people. In my free time
                 you'll find me playing sports, trying something new, or
                 exploring the city. That drive to immerse myself and keep moving
                 forward didn't stay on the road — it came back with me and sits
