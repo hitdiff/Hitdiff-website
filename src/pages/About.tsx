@@ -82,7 +82,7 @@ const About = () => (
           >
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
               The human behind{" "}
-              <span className="text-gradient">the Systems.</span>
+              <span className="text-gradient">HitDiff</span>
             </h1>
 
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed mb-8">
