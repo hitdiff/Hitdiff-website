@@ -25,8 +25,11 @@ const About = () => (
 
       <div className="container px-4 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 max-w-6xl mx-auto items-center">
-          {/* Left — Founder image */}
-          <motion.div
+<img 
+                    src="/founder.png" 
+                    alt="Founder"
+                    className="w-full h-full object-cover"
+                  />          <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
