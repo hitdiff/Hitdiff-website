@@ -39,7 +39,7 @@ const About = () => (
               }} />
               <div className="relative rounded-2xl overflow-hidden border-2 border-primary/25 shadow-[0_0_40px_-8px_hsl(var(--primary)/0.35)]">
                 <img 
-                  src="/public/founder.png" 
+                  src="/Founder.png" 
                   alt="Founder"
                   className="w-full h-full object-cover aspect-[3/4]"
                 />
