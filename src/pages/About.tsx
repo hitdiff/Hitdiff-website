@@ -87,34 +87,30 @@ const About = () => (
 
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed mb-8">
               <p>
-                I started HitDiff because I kept seeing the same problem —
-                talented business owners spending their best hours on tasks a
-                system could handle in seconds. Not because they didn't care,
-                but because nobody had ever built them the right
-                infrastructure.{" "}
+                I started HitDiff because I kept seeing the same problem — drown
+                in manual tasks, scattered tools, and processes that cost them
+                hours every single week. The problem was never a lack of effort
+                — it was a lack of systems.{" "}
               </p>
               <p>
-                HitDiff exists to change that. Building end-to-end digital
-                systems — websites, CRM pipelines, marketing and AI-powered
-                automations — that do the repetitive work so you can focus on
-                actually growing. No bloated agency overhead, no cookie-cutter
-                solutions. Just clean, intentional systems built around how your
-                business actually operates.
+                Our mission is simple: deliver end-to-end digital solutions —
+                websites, CRM pipelines, marketing and AI-powered automations
+                that do the repetitive work so you can focus on actually
+                growing. Just clean, intentional systems built around how your
+                business actually operates. Move faster, stay organized, and
+                scale.
               </p>
               <p>
-                Outside of the work, I'm someone who's always chasing new
-                experiences. Over the past couple of years I've travelled Latin
-                America — 7 countries, countless cities, and lessons that no
-                classroom could ever replicate. I didn't just visit these
-                places, I immersed myself in them — learning the culture,
-                connecting with locals, and deepening my Spanish along the way.
-                That time completely shifted how I see the world and how I
-                approach building relationships with people. When
-                I'm back home you'll find me playing sports, trying
-                something new or exploring. That drive to immerse myself, figure
-                things out, and keep moving forward didn't stay on the road — it
-                came back with me and sits at the core of everything I build at
-                HitDiff.
+                Outside of work I'm always chasing new experiences. Over the
+                past couple of years I travelled across Latin America — 7
+                countries, countless cities, and lessons no classroom could
+                replicate. Learning the culture, connecting with locals, and
+                deepening my Spanish along the way completely shifted how I see
+                the world and how I build relationships with people. Back home
+                you'll find me playing sports, trying something new, or
+                exploring the city. That drive to immerse myself and keep moving
+                forward didn't stay on the road — it came back with me and sits
+                at the core of everything I build at HitDiff.
               </p>
             </div>
 
