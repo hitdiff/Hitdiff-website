@@ -25,11 +25,8 @@ const About = () => (
 
       <div className="container px-4 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 max-w-6xl mx-auto items-center">
-<img 
-                    src="/founder.png" 
-                    alt="Founder"
-                    className="w-full h-full object-cover"
-                  />          <motion.div
+          {/* Left — Founder image */}
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
@@ -41,14 +38,11 @@ const About = () => (
                 background: "radial-gradient(ellipse, hsl(var(--primary) / 0.4), transparent 70%)"
               }} />
               <div className="relative rounded-2xl overflow-hidden border-2 border-primary/25 shadow-[0_0_40px_-8px_hsl(var(--primary)/0.35)]">
-                <div className="aspect-[3/4] bg-gradient-to-br from-muted/40 via-card to-muted/20 flex items-center justify-center">
-                  <div className="text-center space-y-3">
-                    <div className="w-24 h-24 rounded-full bg-primary/10 mx-auto flex items-center justify-center border border-primary/20">
-                      <span className="font-display text-3xl font-bold text-primary">E</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Founder photo</p>
-                  </div>
-                </div>
+                <img 
+                  src="public/founder.png" 
+                  alt="Founder"
+                  className="w-full h-full object-cover aspect-[3/4]"
+                />
               </div>
             </div>
           </motion.div>
