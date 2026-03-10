@@ -104,11 +104,11 @@ const Contact = () => {
                     <div className="space-y-3">
                       <div>
                         <p className="text-xs text-muted-foreground/70 mb-0.5">Email</p>
-                        <p className="text-sm text-muted-foreground">hello..hitdiffdigital.com</p>
+                        <p className="text-sm text-muted-foreground">hitdiffdigital@gmail.com</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground/70 mb-0.5">Phone</p>
-                        <p className="text-sm text-muted-foreground">+1 (555) 000-0000</p>
+                        <p className="text-sm text-muted-foreground">+1 (647)-773-7911</p>
                       </div>
                     </div>
                   )
