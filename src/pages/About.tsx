@@ -4,9 +4,27 @@ import { Button } from "../components/ui/button";
 import { ArrowRight, Workflow, BarChart3, Globe } from "lucide-react";
 
 const caseStudies = [
-  { result: "90% Efficiency Increase", desc: "Automated intake and reporting for a growing agency, cutting manual work from 20 hrs/week to 2.", category: "Workflow Automation", icon: Workflow, color: "from-primary/20 to-secondary/20" },
-  { result: "3x Revenue Growth", desc: "Built a full-stack platform with AI-driven lead scoring that tripled qualified pipeline in 6 months.", category: "Full-Stack Platform", icon: BarChart3, color: "from-secondary/20 to-accent/10" },
-  { result: "50% Faster Go-to-Market", desc: "End-to-end e-commerce build with integrated marketing automation, launched in half the expected timeline.", category: "E-Commerce & Marketing", icon: Globe, color: "from-accent/10 to-primary/20" },
+  {
+    result: "90% Efficiency Increase",
+    desc: "Automated intake and reporting for a growing agency, cutting manual work from 20 hrs/week to 2.",
+    category: "Workflow Automation",
+    icon: Workflow,
+    color: "from-primary/20 to-secondary/20",
+  },
+  {
+    result: "3x Revenue Growth",
+    desc: "Built a full-stack platform with AI-driven lead scoring that tripled qualified pipeline in 6 months.",
+    category: "Full-Stack Platform",
+    icon: BarChart3,
+    color: "from-secondary/20 to-accent/10",
+  },
+  {
+    result: "50% Faster Go-to-Market",
+    desc: "End-to-end e-commerce build with integrated marketing automation, launched in half the expected timeline.",
+    category: "E-Commerce & Marketing",
+    icon: Globe,
+    color: "from-accent/10 to-primary/20",
+  },
 ];
 
 const About = () => (
@@ -19,9 +37,13 @@ const About = () => (
     {/* Hero */}
     <section className="relative py-[100px] overflow-hidden">
       {/* Deep black bg with subtle navy radial gradient */}
-      <div className="absolute inset-0" style={{
-        background: "radial-gradient(ellipse at 65% 50%, hsl(222 50% 12% / 0.8), hsl(var(--background)) 70%)"
-      }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 65% 50%, hsl(222 50% 12% / 0.8), hsl(var(--background)) 70%)",
+        }}
+      />
 
       <div className="container px-4 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 max-w-6xl mx-auto items-center">
@@ -34,12 +56,16 @@ const About = () => (
           >
             <div className="relative">
               {/* Electric blue outer glow */}
-              <div className="absolute -inset-5 rounded-3xl blur-2xl opacity-50" style={{
-                background: "radial-gradient(ellipse, hsl(var(--primary) / 0.4), transparent 70%)"
-              }} />
+              <div
+                className="absolute -inset-5 rounded-3xl blur-2xl opacity-50"
+                style={{
+                  background:
+                    "radial-gradient(ellipse, hsl(var(--primary) / 0.4), transparent 70%)",
+                }}
+              />
               <div className="relative rounded-2xl overflow-hidden border-2 border-primary/25 shadow-[0_0_40px_-8px_hsl(var(--primary)/0.35)]">
-                <img 
-                  src="/Founder.png" 
+                <img
+                  src="/Founder.png"
                   alt="Founder"
                   className="w-full h-full object-cover aspect-[3/4]"
                 />
@@ -61,22 +87,43 @@ const About = () => (
 
             <div className="space-y-5 text-lg text-muted-foreground leading-relaxed mb-8">
               <p>
-                I started hitdiff after watching too many small businesses drown in manual tasks, scattered tools, and processes that cost them hours every single week. The problem was never a lack of effort — it was a lack of systems.
+                I started HitDiff because I kept seeing the same problem —
+                talented business owners spending their best hours on tasks a
+                system could handle in seconds. Not because they didn't care,
+                but because nobody had ever built them the right
+                infrastructure.{" "}
               </p>
               <p>
-                Our mission is simple: deliver end-to-end digital solutions that help SMBs move faster, stay organized, and scale without the overhead. From AI-powered automation to full web builds, every project is designed to eliminate friction.
+                HitDiff exists to change that. Building end-to-end digital
+                systems — websites, CRM pipelines, marketing and AI-powered
+                automations — that do the repetitive work so you can focus on
+                actually growing. No bloated agency overhead, no cookie-cutter
+                solutions. Just clean, intentional systems built around how your
+                business actually operates.
               </p>
               <p>
-                With a background in Computer Science, years of volunteering in community tech initiatives, and deep expertise in workflow optimization, I bring both the technical chops and the human understanding to every engagement.
+                Outside of the work, I'm someone who's always chasing new
+                experiences. I've traveled extensively across Latin America —
+                visiting 7 countries, immersing myself in local cultures,
+                learning the rhythms of different communities, and sharpening my
+                Spanish along the way. Those experiences didn't just broaden my
+                perspective — they shaped how I think about people,
+                communication, and building things that actually work for the
+                humans using them. When I'm not building systems or exploring
+                new places, you'll find me on the basketball court, the soccer
+                field, or the golf course. That same drive to keep improving,
+                keep moving, and keep learning is what I bring to every client I
+                work with.
               </p>
             </div>
 
-            <p className="italic text-muted-foreground text-base">— Founder, hitdiff</p>
+            <p className="italic text-muted-foreground text-base">
+              — ELijah Hwang
+            </p>
           </motion.div>
         </div>
       </div>
     </section>
-
 
     {/* Case Studies */}
     <section className="py-24 relative">
@@ -106,18 +153,26 @@ const About = () => (
               className="group"
             >
               <div className="glass rounded-2xl overflow-hidden border border-border/40 hover:border-primary/50 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.3)] transition-all duration-500">
-                <div className={`aspect-[4/3] bg-gradient-to-br ${study.color} flex items-center justify-center relative`}>
+                <div
+                  className={`aspect-[4/3] bg-gradient-to-br ${study.color} flex items-center justify-center relative`}
+                >
                   <div className="absolute inset-0 grid-pattern opacity-10" />
                   <div className="text-center space-y-2 relative z-10">
                     <div className="w-12 h-12 rounded-xl bg-card/80 backdrop-blur flex items-center justify-center mx-auto">
                       <study.icon size={20} className="text-primary" />
                     </div>
-                    <p className="text-xs text-muted-foreground font-medium">{study.category}</p>
+                    <p className="text-xs text-muted-foreground font-medium">
+                      {study.category}
+                    </p>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors">{study.result}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">{study.desc}</p>
+                  <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors">
+                    {study.result}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {study.desc}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -148,7 +203,12 @@ const About = () => (
                 Get in Touch <ArrowRight className="ml-2" size={16} />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300">
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="border-border/60 hover:bg-accent/10 hover:text-accent hover:border-accent/30 transition-all duration-300"
+            >
               <Link to="/services">View Services</Link>
             </Button>
           </div>
