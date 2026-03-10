@@ -31,16 +31,6 @@ const AIStatSection = () => (
           of companies use or are planning to use AI to improve business outcomes.
         </p>
 
-        <motion.p
-          className="text-base text-muted-foreground leading-relaxed max-w-xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          AI-driven workflows and automation are transforming modern businesses,
-          improving efficiency and productivity.
-        </motion.p>
 
         <motion.cite
           className="block not-italic text-xs tracking-[0.25em] uppercase font-mono text-slate-500"
