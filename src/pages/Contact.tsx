@@ -17,11 +17,16 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -34,11 +39,26 @@ const Contact = () => {
     }
     setErrors({});
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      await fetch("https://hook.us2.make.com/trngsjuf02rmfxwasrnfsz346hq56gxc"
+, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          message: form.message,
+        }),
+      });
       toast.success("Message sent! I'll get back to you within 24 hours.");
       setForm({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const update = (field: string, value: string) => {
@@ -69,26 +89,75 @@ const Contact = () => {
               className="md:col-span-3 glass rounded-xl p-8 space-y-5 gradient-card-border"
             >
               <div>
-                <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
-                <Input id="name" value={form.name} onChange={(e) => update("name", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="Your name" />
-                {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
+                <Label htmlFor="name" className="text-sm font-medium">
+                  Name *
+                </Label>
+                <Input
+                  id="name"
+                  value={form.name}
+                  onChange={(e) => update("name", e.target.value)}
+                  className="mt-1.5 bg-background/50 focus:border-accent"
+                  placeholder="Your name"
+                />
+                {errors.name && (
+                  <p className="text-xs text-destructive mt-1">{errors.name}</p>
+                )}
               </div>
               <div>
-                <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="you..company.com" />
-                {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+                <Label htmlFor="email" className="text-sm font-medium">
+                  Email *
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => update("email", e.target.value)}
+                  className="mt-1.5 bg-background/50 focus:border-accent"
+                  placeholder="you..company.com"
+                />
+                {errors.email && (
+                  <p className="text-xs text-destructive mt-1">
+                    {errors.email}
+                  </p>
+                )}
               </div>
               <div>
-                <Label htmlFor="company" className="text-sm font-medium">Company</Label>
-                <Input id="company" value={form.company} onChange={(e) => update("company", e.target.value)} className="mt-1.5 bg-background/50 focus:border-accent" placeholder="Your company (optional)" />
+                <Label htmlFor="company" className="text-sm font-medium">
+                  Company
+                </Label>
+                <Input
+                  id="company"
+                  value={form.company}
+                  onChange={(e) => update("company", e.target.value)}
+                  className="mt-1.5 bg-background/50 focus:border-accent"
+                  placeholder="Your company (optional)"
+                />
               </div>
               <div>
-                <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
-                <Textarea id="message" value={form.message} onChange={(e) => update("message", e.target.value)} className="mt-1.5 bg-background/50 min-h-[120px] focus:border-accent" placeholder="Tell me about your project..." />
-                {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
+                <Label htmlFor="message" className="text-sm font-medium">
+                  Message *
+                </Label>
+                <Textarea
+                  id="message"
+                  value={form.message}
+                  onChange={(e) => update("message", e.target.value)}
+                  className="mt-1.5 bg-background/50 min-h-[120px] focus:border-accent"
+                  placeholder="Tell me about your project..."
+                />
+                {errors.message && (
+                  <p className="text-xs text-destructive mt-1">
+                    {errors.message}
+                  </p>
+                )}
               </div>
               <Button variant="glow" className="w-full" disabled={loading}>
-                {loading ? "Sending..." : <>Send Message <Send size={14} className="ml-2" /></>}
+                {loading ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    Send Message <Send size={14} className="ml-2" />
+                  </>
+                )}
               </Button>
             </motion.form>
 
@@ -100,29 +169,52 @@ const Contact = () => {
             >
               {[
                 {
-                  icon: Mail, title: "Get in Touch", content: (
+                  icon: Mail,
+                  title: "Get in Touch",
+                  content: (
                     <div className="space-y-3">
                       <div>
-                        <p className="text-xs text-muted-foreground/70 mb-0.5">Email</p>
-                        <p className="text-sm text-muted-foreground">hitdiffdigital@gmail.com</p>
+                        <p className="text-xs text-muted-foreground/70 mb-0.5">
+                          Email
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          hitdiffdigital@gmail.com
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground/70 mb-0.5">Phone</p>
-                        <p className="text-sm text-muted-foreground">+1 (647)-773-7911</p>
+                        <p className="text-xs text-muted-foreground/70 mb-0.5">
+                          Phone
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          +1 (647)-773-7911
+                        </p>
                       </div>
                     </div>
-                  )
+                  ),
                 },
                 {
-                  icon: Calendar, title: "Book a Call", content: (
+                  icon: Calendar,
+                  title: "Book a Call",
+                  content: (
                     <>
-                      <p className="text-sm text-muted-foreground mb-3">Schedule a free 30-minute strategy call.</p>
-                      <Button variant="outline" size="sm" className="w-full hover:bg-accent/10 hover:text-accent hover:border-accent/30">Schedule Call</Button>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Schedule a free 30-minute strategy call.
+                      </p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full hover:bg-accent/10 hover:text-accent hover:border-accent/30"
+                      >
+                        Schedule Call
+                      </Button>
                     </>
-                  )
+                  ),
                 },
               ].map((item) => (
-                <div key={item.title} className="glass rounded-xl p-6 gradient-card-border hover:glow-border transition-all duration-300">
+                <div
+                  key={item.title}
+                  className="glass rounded-xl p-6 gradient-card-border hover:glow-border transition-all duration-300"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <item.icon size={18} className="text-primary" />
                     <h3 className="font-display font-semibold">{item.title}</h3>

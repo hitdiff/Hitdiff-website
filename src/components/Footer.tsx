@@ -37,8 +37,8 @@ const Footer = () => (
           <div>
             <h4 className="font-display font-semibold text-sm mb-3">Contact</h4>
             <div className="flex flex-col gap-2">
-              <p className="text-sm text-muted-foreground">hello@hitdiffdigital.com</p>
-              <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+              <p className="text-sm text-muted-foreground">hitdiffdigital@gmail.com</p>
+              <p className="text-sm text-muted-foreground">+1 (647)-773-7911</p>
               <p className="text-sm text-muted-foreground">Toronto, Ontario</p>
             </div>
           </div>
