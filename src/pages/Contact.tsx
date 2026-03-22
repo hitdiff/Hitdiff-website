@@ -41,7 +41,7 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      await fetch("https://hook.us2.make.com/trngsjuf02rmfxwasrnfsz346hq56gxc"
+      await fetch("https://hook.us2.make.com/fer6htlly9vc17dhy6wwkatm7whkwkfd"
 , {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -76,8 +76,8 @@ const Contact = () => {
       <section className="py-12 pb-6">
         <div className="container px-4">
           <SectionHeading
-            title="Let's Start a Conversation"
-            description="Tell me about your project and I'll get back to you within 24 hours with a tailored plan."
+            title="Let's Chat"
+            description="Tell me about your project and I'll get back to you within 24 hours."
           />
 
           <div className="grid md:grid-cols-5 gap-10 max-w-4xl mx-auto">
