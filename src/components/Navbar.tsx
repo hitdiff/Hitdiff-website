@@ -28,7 +28,9 @@ const Navbar = () => {
               key={item.path}
               to={item.path}
               className={`text-sm font-medium transition-colors hover:text-accent ${
-                pathname === item.path ? "text-primary" : "text-muted-foreground"
+                pathname === item.path
+                  ? "text-primary"
+                  : "text-muted-foreground"
               }`}
             >
               {item.label}
@@ -39,7 +41,10 @@ const Navbar = () => {
           </Button>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden text-foreground"
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -59,14 +64,18 @@ const Navbar = () => {
                   to={item.path}
                   onClick={() => setOpen(false)}
                   className={`text-sm font-medium py-2 transition-colors hover:text-accent ${
-                    pathname === item.path ? "text-primary" : "text-muted-foreground"
+                    pathname === item.path
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {item.label}
                 </Link>
               ))}
               <Button variant="glow" size="sm" asChild>
-                <Link to="/contact" onClick={() => setOpen(false)}>Get Started</Link>
+                <Link to="/contact" onClick={() => setOpen(false)}>
+                  Get Started
+                </Link>
               </Button>
             </div>
           </motion.div>
